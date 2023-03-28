@@ -10,6 +10,10 @@ import { IMansionApiResponse, IMansionResult } from 'src/assets/data/IMansionApi
 export class MansionListComponent implements OnInit{
   mansionlist!: IMansionResult[];
 
+  dropMansionList(mansion: IMansionResult) {
+    this.mansionlist.filter(obj => obj.id !== mansion.id);
+  }
+
   constructor(private mansionService: MansionService) { }
 
   ngOnInit(): void {

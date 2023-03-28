@@ -26,6 +26,7 @@ export class AddMansionComponent {
   constructor(private mansionService: MansionService, private router: Router, private toastr: ToastrService) { }
 
   addMansion() {
+    console.log(this.addMansionRequest);
     this.mansionService.addMansion(this.addMansionRequest)
     .subscribe({
       next: (mansion) => {
