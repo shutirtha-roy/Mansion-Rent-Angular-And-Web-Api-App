@@ -7,6 +7,11 @@ import { MansionComponent } from './mansion/mansion.component';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'auth/login',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
     children: [
       {
         path: 'auth',
