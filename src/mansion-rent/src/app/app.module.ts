@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { NotfoundComponent } from './shared/components/notfound/notfound.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    PagesComponent
+    PagesComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
