@@ -8,7 +8,7 @@ import { IMansionApiResponse, IMansionResult } from 'src/assets/data/IMansionApi
   styleUrls: ['./mansion-list.component.css']
 })
 export class MansionListComponent implements OnInit{
-  mansionlist!: IMansionResult;
+  mansionlist!: IMansionResult[];
 
   constructor(private mansionService: MansionService) { }
 

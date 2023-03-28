@@ -4,7 +4,7 @@ export class MansionApiResolve implements IMansionApiResponse {
     public id!: string;
     public statuscode!: string;
     public errormessages!: string[];
-    public result!: IMansionResult;
+    public result!: IMansionResult[];
 
     public constructor(init?:Partial<MansionApiResolve>) {
         Object.assign(this, init);

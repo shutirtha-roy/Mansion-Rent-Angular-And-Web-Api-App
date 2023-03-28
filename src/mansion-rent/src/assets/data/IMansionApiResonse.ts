@@ -2,7 +2,7 @@ export interface IMansionApiResponse {
     id: string,
     statuscode: string,
     errormessages: string[],
-    result: IMansionResult
+    result: IMansionResult[]
 }
 
 export interface IMansionResult {
