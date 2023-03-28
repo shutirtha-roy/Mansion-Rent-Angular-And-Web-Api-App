@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { IApiResponse } from 'src/assets/data/IApiResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,11 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   signUp(userObj: any) {
-    return this.http.post<any>(`${this.baseUrl}register`, userObj);
+    return this.http.post<IApiResponse>(`${this.baseUrl}register`, userObj);
   }
 
   login(loginObj: any) {
-    return this.http.post<any>(`${this.baseUrl}login`, loginObj);
+    return this.http.post<IApiResponse>(`${this.baseUrl}login`, loginObj);
   }
 
   signOut() {

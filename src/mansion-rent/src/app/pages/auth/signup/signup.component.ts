@@ -40,7 +40,7 @@ export class SignupComponent implements OnInit {
       this.auth.signUp(this.signUpForm.value)
       .subscribe({
         next: (res) => {
-          alert(res.message);
+          alert(res.result);
           console.log(res);
           this.signUpForm.reset();
           this.router.navigate(['auth/login']);

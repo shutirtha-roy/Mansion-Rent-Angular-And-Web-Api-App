@@ -38,10 +38,11 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.loginForm.value)
       .subscribe({
         next: (res) => {
-          alert(res.message);
+          alert(res);
           console.log(res);
+          console.log(res.result);
           console.log(res.result.token);
-          this.auth.storeToken(res.token);
+          //this.auth.storeToken(res.token);
           this.loginForm.reset();
           this.router.navigate(['mansion']);
         },
