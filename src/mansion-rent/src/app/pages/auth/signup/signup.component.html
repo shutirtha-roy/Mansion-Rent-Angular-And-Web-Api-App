@@ -8,33 +8,6 @@
                     </div>
                     <div class="panel-body p-3">
                         <form [formGroup]="signUpForm">
-                            <!-- <div class="form-group pt-3">
-                                <div class="input-field" [class.error]="signUpForm.controls['firstName'].dirty && signUpForm.hasError('required', 'firstName')">
-                                    <span class="fa fa-user p-2"></span>
-                                    <input formControlName="firstName" type="text" placeholder="FirstName" >
-                                </div>
-                            </div>
-                            <small *ngIf="signUpForm.controls['firstName'].dirty && signUpForm.hasError('required', 'firstName')"
-                            class="text-danger">*FirstName is required</small>
-
-                            <div class="form-group pt-3">
-                                <div class="input-field" [class.error]="signUpForm.controls['lastName'].dirty && signUpForm.hasError('required', 'lastName')">
-                                    <span class="fa fa-user p-2"></span>
-                                    <input formControlName="lastName" type="text" placeholder="LastName" >
-                                </div>
-                            </div>
-                            <small *ngIf="signUpForm.controls['lastName'].dirty && signUpForm.hasError('required', 'lastName')"
-                            class="text-danger">*LastName is required</small>
-
-                            <div class="form-group pt-3">
-                                <div class="input-field" [class.error]="signUpForm.controls['email'].dirty && signUpForm.hasError('required', 'email')">
-                                    <span class="fa fa-user p-2"></span>
-                                    <input formControlName="email" type="text" placeholder="Email" >
-                                </div>
-                            </div>
-                            <small *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required', 'email')"
-                            class="text-danger">*Email is required</small> -->
-
                             <div class="form-group pt-3">
                                 <div class="input-field text-center" [class.error]="signUpForm.controls['name'].dirty && signUpForm.hasError('required', 'name')">
                                     <span class="fa fa-user p-2"></span>
@@ -66,16 +39,6 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="form-group pt-3">
-                                <div class="input-field text-center" [class.error]="signUpForm.controls['role'].dirty && signUpForm.hasError('required', 'role')">
-                                    <span class="fa fa-user p-2"></span>
-                                    <input formControlName="role" type="text" placeholder="Role" class="w-75">
-                                    <br>
-                                    <small *ngIf="signUpForm.controls['role'].dirty && signUpForm.hasError('required', 'role')"
-                            class="text-danger">*Role is required</small>
-                                </div>
-                            </div> -->
-                            
                             <div class="text-center">
                                 <button (click)="onSignUp()" type="submit" class="btn btn-primary btn-block mt-4 w-75">Sign up</button>
                             </div>
