@@ -1,8 +1,0 @@
-{
-    "/api/v3/*": {
-    "target": "",
-    "secure": false,
-    "logLevel": "debug",
-    "changeOrigin": true
-   }
-}
