@@ -3,11 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { AuthComponent } from './auth/auth.component';
+import { MansionComponent } from './mansion/mansion.component';
+import { MansionNumberComponent } from './mansion-number/mansion-number.component';
 
 
 @NgModule({
   declarations: [
-    AuthComponent
+    AuthComponent,
+    MansionComponent,
+    MansionNumberComponent
   ],
   imports: [
     CommonModule,
