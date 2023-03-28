@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MansionService } from 'src/app/services/mansion.service';
+import { IMansionApiResponse, IMansionResult } from 'src/assets/data/IMansionApiResonse';
 
 @Component({
   selector: 'app-mansion-list',
@@ -7,8 +8,7 @@ import { MansionService } from 'src/app/services/mansion.service';
   styleUrls: ['./mansion-list.component.css']
 })
 export class MansionListComponent implements OnInit{
-  mansions: any[] = [
-  ];
+  mansionlist!: IMansionResult;
 
   constructor(private mansionService: MansionService) { }
 
@@ -17,12 +17,12 @@ export class MansionListComponent implements OnInit{
     .subscribe({
       next: (mansions) => {
         //console.log(employees);
-        this.mansions = mansions;
-        console.log(this.mansions);
+        this.mansionlist = mansions.result;
+        console.log(this.mansionlist);
       },
       error: (response) => {
         console.log(response)
       }
     });
-}
+  } 
 }
