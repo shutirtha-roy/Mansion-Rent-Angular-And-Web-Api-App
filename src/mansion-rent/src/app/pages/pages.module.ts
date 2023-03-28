@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { AuthComponent } from './auth/auth.component';
@@ -19,7 +20,8 @@ import { AddMansionComponent } from './mansion/add-mansion/add-mansion.component
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    FormsModule
   ]
 })
 export class PagesModule { }

@@ -10,11 +10,10 @@ export interface IMansionResult {
     name: string,
     details: string,
     rate: string,
-    sqrt: string,
+    sqft: string,
     occupancy: string,
     imageurl: string,
     amenity: string,
     createdDate: Date,
-    updatedDate: Date,
-    villaNumbers: IMansionResult[]
+    updatedDate: Date
 }
