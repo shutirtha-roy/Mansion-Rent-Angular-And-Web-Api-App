@@ -41,10 +41,7 @@ export class LoginComponent implements OnInit {
         next: (res) => {
           //alert(res);
           this.toaster.success("Login Successful");
-          console.log(res);
-          console.log(res.result);
-          console.log(res.result.token);
-          //this.auth.storeToken(res.token);
+          this.auth.storeToken(res.result.token);
           this.loginForm.reset();
           this.router.navigate(['mansion']);
         },
