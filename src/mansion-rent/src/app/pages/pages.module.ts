@@ -3,15 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { AuthComponent } from './auth/auth.component';
-import { MansionComponent } from './mansion/mansion.component';
-import { MansionNumberComponent } from './mansion-number/mansion-number.component';
+import { MansionListComponent } from './mansion/mansion-list/mansion-list.component';
+import { MansionNumberListComponent } from './mansion-number/mansion-number-list/mansion-number-list.component';
 
 
 @NgModule({
   declarations: [
     AuthComponent,
-    MansionComponent,
-    MansionNumberComponent
+    MansionListComponent,
+    MansionNumberListComponent,
+    MansionListComponent,
+    MansionNumberListComponent
   ],
   imports: [
     CommonModule,

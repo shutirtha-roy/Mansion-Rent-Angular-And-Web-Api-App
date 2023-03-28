@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MansionNumberComponent } from './mansion-number.component';
+import { MansionListComponent } from './mansion-list.component';
 
-describe('MansionNumberComponent', () => {
-  let component: MansionNumberComponent;
-  let fixture: ComponentFixture<MansionNumberComponent>;
+describe('MansionListComponent', () => {
+  let component: MansionListComponent;
+  let fixture: ComponentFixture<MansionListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MansionNumberComponent ]
+      declarations: [ MansionListComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MansionNumberComponent);
+    fixture = TestBed.createComponent(MansionListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
