@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../guards/auth.guard';
 import { MansionNumberListComponent } from './mansion-number/mansion-number-list/mansion-number-list.component';
+import { AddMansionComponent } from './mansion/add-mansion/add-mansion.component';
 import { MansionListComponent } from './mansion/mansion-list/mansion-list.component';
 
 const routes: Routes = [
@@ -26,6 +27,11 @@ const routes: Routes = [
       {
         path: 'mansion-number',
         component: MansionNumberListComponent, 
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'mansion/add',
+        component: AddMansionComponent,
         canActivate: [AuthGuard]
       }
     ]
