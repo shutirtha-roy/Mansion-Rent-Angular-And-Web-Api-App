@@ -21,5 +21,15 @@ export class MansionService {
     return this.http.get<IMansionApiResponse>(this.baseUrl);
   }
 
+  getMansion(id: string): Observable<IMansionApiResponse> {
+    return this.http.get<IMansionApiResponse>(this.baseUrl + '/' + id);
+  }
 
+  updateMansion(updateEmployeeRequest: IMansionResult): Observable<IMansionResult> {
+    return this.http.put<IMansionResult>(this.baseUrl, updateEmployeeRequest);
+  }
+
+  deleteMansion(id: string): Observable<IMansionResult> {
+    return this.http.delete<IMansionResult>(this.baseUrl + '/' + id);
+  }
 }

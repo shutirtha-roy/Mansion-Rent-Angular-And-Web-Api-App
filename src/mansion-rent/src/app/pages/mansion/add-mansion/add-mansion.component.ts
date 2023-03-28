@@ -17,7 +17,7 @@ export class AddMansionComponent {
     rate: '',
     sqft: '',
     occupancy: '',
-    imageurl: '',
+    imageUrl: '',
     amenity: '',
     createdDate: new Date(),
     updatedDate: new Date()

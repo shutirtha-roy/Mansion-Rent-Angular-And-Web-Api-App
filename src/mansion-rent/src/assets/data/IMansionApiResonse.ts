@@ -12,7 +12,7 @@ export interface IMansionResult {
     rate: string,
     sqft: string,
     occupancy: string,
-    imageurl: string,
+    imageUrl: string,
     amenity: string,
     createdDate: Date,
     updatedDate: Date
