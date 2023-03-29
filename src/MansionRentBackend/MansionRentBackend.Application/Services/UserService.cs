@@ -85,7 +85,9 @@ namespace MansionRentBackend.Application.Services
             _applicationUnitOfWork.Save();
             user.Password = "";
 
-            return _mapper.Map<LocalUserBO>(user);
+            var userBO = _mapper.Map<LocalUserBO>(user);
+
+            return userBO;
         }
     }
 }
