@@ -8,7 +8,7 @@ import { IMansionApiResponse, IMansionResult } from 'src/assets/data/IMansionApi
   providedIn: 'root'
 })
 export class MansionService {
-  private baseUrl: string = "/api/v1/VillaAPI/";
+  private baseUrl: string = "/api/v1/MansionAPI/";
 
   constructor(private http: HttpClient, private router: Router) { }
 

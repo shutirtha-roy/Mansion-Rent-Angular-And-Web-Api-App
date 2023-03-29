@@ -16,10 +16,10 @@ export class DeleteMansionComponent implements OnInit {
     rate: '',
     sqft: '',
     occupancy: '',
-    imageUrl: '',
-    amenity: '',
+    base64Image: '',
     createdDate: new Date(),
-    updatedDate: new Date()
+    updatedDate: new Date(),
+    isDeleted: false
   };  
   
   constructor(private route: ActivatedRoute, private mansionService: MansionService, private router: Router) { }

@@ -17,10 +17,10 @@ export class AddMansionComponent {
     rate: '',
     sqft: '',
     occupancy: '',
-    imageUrl: '',
-    amenity: '',
+    base64Image: '',
     createdDate: new Date(),
-    updatedDate: new Date()
+    updatedDate: new Date(),
+    isDeleted: false
   };
 
   constructor(private mansionService: MansionService, private router: Router, private toastr: ToastrService) { }

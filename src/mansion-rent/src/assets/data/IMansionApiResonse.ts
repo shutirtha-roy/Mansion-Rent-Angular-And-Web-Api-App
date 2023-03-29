@@ -12,8 +12,8 @@ export interface IMansionResult {
     rate: string,
     sqft: string,
     occupancy: string,
-    imageUrl: string,
-    amenity: string,
+    base64Image: string,
     createdDate: Date,
-    updatedDate: Date
+    updatedDate: Date,
+    isDeleted: boolean
 }
