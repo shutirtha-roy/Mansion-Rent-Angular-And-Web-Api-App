@@ -39,8 +39,8 @@ public class MansionCreateDto : BaseDto
 
     internal async Task CreateMantion()
     {
-        var villa = _mapper.Map<VillaBO>(this);
+        var mansion = _mapper.Map<VillaBO>(this);
 
-        await _mansionService.CreateMansion(villa);
+        await _mansionService.CreateMansion(mansion);
     }
 }

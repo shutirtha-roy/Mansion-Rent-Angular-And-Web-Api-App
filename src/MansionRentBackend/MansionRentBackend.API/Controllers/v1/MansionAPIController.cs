@@ -27,9 +27,8 @@ namespace MansionRentBackend.API.Controllers.v1
         {
             try
             {
-                var model = _scope.Resolve<MansionListDto>();
-                //var villas = await model.GetAllVillas();
-                var villas = await model.GetAllMansionsByPage(pageSize, pageNumber);
+                var mansionDto = _scope.Resolve<MansionListDto>();
+                var villas = await mansionDto.GetAllMansionsByPage(pageSize, pageNumber);
 
                 if (occupancy > 0)
                 {
@@ -134,8 +133,8 @@ namespace MansionRentBackend.API.Controllers.v1
         {
             try
             {
-                var model = _scope.Resolve<MansionListDto>();
-                await model.DeleteMansion(id);
+                var mansionDto = _scope.Resolve<MansionListDto>();
+                await mansionDto.DeleteMansion(id);
 
                 _response.StatusCode = HttpStatusCode.NoContent;
                 _response.IsSuccess = true;
