@@ -97,7 +97,7 @@ namespace MansionRentBackend.API.Controllers.v1
         }
 
         [HttpPost]
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Post([FromBody] MansionCreateDto mantionDto)
         {
             try
@@ -128,7 +128,7 @@ namespace MansionRentBackend.API.Controllers.v1
         }
 
         [HttpDelete("{id}")]
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             try
@@ -158,7 +158,7 @@ namespace MansionRentBackend.API.Controllers.v1
         }
 
         [HttpPut]
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Put([FromBody] MansionEditDto mansionDto)
         {
             try
