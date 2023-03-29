@@ -12,6 +12,7 @@
                                 <div class="input-field text-center" [class.error]="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')">
                                     <span class="fa fa-user p-2"></span>
                                     <input formControlName="username" type="text" placeholder="Username" class="w-75">
+                                    <span class="fa fa-address-book"></span>
                                     <br>
                                     <small *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')" 
                             class="text-danger">*Username is required</small>

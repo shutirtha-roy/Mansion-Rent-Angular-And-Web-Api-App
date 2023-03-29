@@ -12,6 +12,7 @@
                                 <div class="input-field text-center" [class.error]="signUpForm.controls['name'].dirty && signUpForm.hasError('required', 'name')">
                                     <span class="fa fa-user p-2"></span>
                                     <input formControlName="name" type="text" placeholder="Name" class="w-75">
+                                    <span class="fa fa-address-book"></span>
                                     <br>
                                     <small *ngIf="signUpForm.controls['name'].dirty && signUpForm.hasError('required', 'name')"
                             class="text-danger">*Name is required</small>
@@ -22,6 +23,7 @@
                                 <div class="input-field text-center" [class.error]="signUpForm.controls['username'].dirty && signUpForm.hasError('required', 'username')">
                                     <span class="fa fa-user p-2"></span>
                                     <input formControlName="username" type="text" placeholder="Username" class="w-75">
+                                    <span class="fa fa-address-book"></span>
                                     <br>
                                     <small *ngIf="signUpForm.controls['username'].dirty && signUpForm.hasError('required', 'username')"
                             class="text-danger">*Username is required</small>

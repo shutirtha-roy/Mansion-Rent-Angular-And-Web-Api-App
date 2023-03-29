@@ -7,7 +7,7 @@ import { IApiResponse } from 'src/assets/data/IApiResponse';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl: string = "/api/v1/UsersAuth/";
+  private baseUrl: string = "/api/v1/Auth/";
 
   constructor(private http: HttpClient, private router: Router) { }
 
