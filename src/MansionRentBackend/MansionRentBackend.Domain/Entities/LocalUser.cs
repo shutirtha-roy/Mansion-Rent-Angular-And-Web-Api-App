@@ -1,4 +1,4 @@
-﻿namespace MansionRentBackend.Application.Entities;
+﻿namespace MansionRentBackend.Domain.Entities;
 public sealed class LocalUser : IEntity<Guid>
 {
     public Guid Id { get; set; }

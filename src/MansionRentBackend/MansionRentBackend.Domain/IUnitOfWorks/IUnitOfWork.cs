@@ -1,4 +1,4 @@
-﻿namespace MansionRentBackend.Application.UnitOfWorks
+﻿namespace MansionRentBackend.Domain.IUnitOfWorks
 {
     public interface IUnitOfWork : IDisposable
     {

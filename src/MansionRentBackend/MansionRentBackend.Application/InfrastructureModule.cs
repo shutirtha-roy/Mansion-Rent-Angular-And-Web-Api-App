@@ -3,6 +3,8 @@ using MansionRentBackend.Application.DbContexts;
 using MansionRentBackend.Application.Repositories;
 using MansionRentBackend.Application.Services;
 using MansionRentBackend.Application.UnitOfWorks;
+using MansionRentBackend.Domain.IUnitOfWorks;
+using MansionRentBackend.Domain.Repositories;
 
 namespace MansionRentBackend.Application
 {

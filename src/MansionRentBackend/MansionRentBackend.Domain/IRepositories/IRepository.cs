@@ -1,7 +1,7 @@
-﻿using MansionRentBackend.Application.Entities;
+﻿using MansionRentBackend.Domain.Entities;
 using System.Linq.Expressions;
 
-namespace MansionRentBackend.Application.Repositories
+namespace MansionRentBackend.Domain.Repositories
 {
     public interface IRepository<TEntity, TKey>
         where TEntity : class, IEntity<TKey>

@@ -1,4 +1,4 @@
-﻿namespace MansionRentBackend.Application.Entities
+﻿namespace MansionRentBackend.Domain.Entities
 {
     public interface IEntity<T>
     {

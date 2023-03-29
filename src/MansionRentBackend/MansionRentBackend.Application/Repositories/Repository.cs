@@ -1,9 +1,8 @@
-﻿using MansionRentBackend.Application.Entities;
+﻿using MansionRentBackend.Domain.Entities;
+using MansionRentBackend.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 using System.Linq.Dynamic.Core;
-using System.Collections.Generic;
-
+using System.Linq.Expressions;
 
 namespace MansionRentBackend.Application.Repositories
 {
@@ -127,7 +126,7 @@ namespace MansionRentBackend.Application.Repositories
         }
 
         public async Task<(IList<TEntity> data, int total, int totalDisplay)> Get
-            (Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, 
+            (Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "", int pageIndex = 1, int pageSize = 10, bool isTrackingOff = false)
         {
             IQueryable<TEntity> query = _dbSet;
@@ -164,7 +163,7 @@ namespace MansionRentBackend.Application.Repositories
             }
         }
 
-        public async Task<(IList<TEntity> data, int total, int totalDisplay)> GetDynamic(Expression<Func<TEntity, bool>> filter = null, 
+        public async Task<(IList<TEntity> data, int total, int totalDisplay)> GetDynamic(Expression<Func<TEntity, bool>> filter = null,
             string orderBy = null, string includeProperties = "", int pageIndex = 1, int pageSize = 10, bool isTrackingOff = false)
         {
             IQueryable<TEntity> query = _dbSet;

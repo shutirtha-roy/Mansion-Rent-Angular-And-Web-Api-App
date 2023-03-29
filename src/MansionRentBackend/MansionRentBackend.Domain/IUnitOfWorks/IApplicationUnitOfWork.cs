@@ -1,6 +1,6 @@
-﻿using MansionRentBackend.Application.Repositories;
+﻿using MansionRentBackend.Domain.Repositories;
 
-namespace MansionRentBackend.Application.UnitOfWorks
+namespace MansionRentBackend.Domain.IUnitOfWorks
 {
     public interface IApplicationUnitOfWork : IUnitOfWork
     {

@@ -1,6 +1,6 @@
-﻿using MansionRentBackend.Application.Entities;
+﻿using MansionRentBackend.Domain.Entities;
 
-namespace MansionRentBackend.Application.Repositories
+namespace MansionRentBackend.Domain.Repositories
 {
     public interface IUserRepository : IRepository<LocalUser, Guid>
     {

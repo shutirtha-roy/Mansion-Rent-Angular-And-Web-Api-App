@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using MansionRentBackend.Application.BusinessObjects;
-using MansionRentBackend.Application.UnitOfWorks;
+using MansionRentBackend.Domain.IUnitOfWorks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using LocalUserBO = MansionRentBackend.Application.BusinessObjects.LocalUser;
-using LocalUserEO = MansionRentBackend.Application.Entities.LocalUser;
+using LocalUserEO = MansionRentBackend.Domain.Entities.LocalUser;
 
 namespace MansionRentBackend.Application.Services
 {
@@ -17,7 +17,7 @@ namespace MansionRentBackend.Application.Services
         private readonly IMapper _mapper;
         private readonly string _secretKey;
 
-        public UserService(IApplicationUnitOfWork applicationUnitOfWork, 
+        public UserService(IApplicationUnitOfWork applicationUnitOfWork,
             IMapper mapper, IConfiguration configuration)
         {
             _applicationUnitOfWork = applicationUnitOfWork;
@@ -47,7 +47,7 @@ namespace MansionRentBackend.Application.Services
                     User = null
                 };
             }
-                
+
 
             //If user was found geenrate JWT Token
             var tokenHandler = new JwtSecurityTokenHandler();

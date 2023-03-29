@@ -1,4 +1,4 @@
-﻿using MansionRentBackend.Application.Entities;
+﻿using MansionRentBackend.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MansionRentBackend.Application.DbContexts

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MansionRentBackend.Domain.IUnitOfWorks;
+using Microsoft.EntityFrameworkCore;
 
 namespace MansionRentBackend.Application.UnitOfWorks
 {

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using MansionRentBackend.Application.UnitOfWorks;
+using MansionRentBackend.Domain.IUnitOfWorks;
 using MansionBO = MansionRentBackend.Application.BusinessObjects.Mansion;
-using MansionEO = MansionRentBackend.Application.Entities.Mansion;
+using MansionEO = MansionRentBackend.Domain.Entities.Mansion;
 
 namespace MansionRentBackend.Application.Services
 {

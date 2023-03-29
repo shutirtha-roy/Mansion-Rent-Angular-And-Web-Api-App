@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MansionRentBackend.Application.Entities;
+namespace MansionRentBackend.Domain.Entities;
 
 public sealed class Mansion : IEntity<Guid>, ISoftDeleteEntity
 {
