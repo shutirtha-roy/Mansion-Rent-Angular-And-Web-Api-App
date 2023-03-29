@@ -44,10 +44,6 @@ namespace MansionRentBackend.Application
                 .As<IUserRepository>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<UserService>()
-                .As<IUserService>()
-                .InstancePerLifetimeScope();
-
             builder.RegisterType<ApplicationUnitOfWork>()
                 .As<IApplicationUnitOfWork>()
                 .InstancePerLifetimeScope();

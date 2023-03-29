@@ -1,7 +1,5 @@
 ﻿using Autofac;
-using Azure;
 using MansionRentBackend.API.DTOs;
-using MansionRentBackend.Application.BusinessObjects;
 using MansionRentBackend.Application.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
