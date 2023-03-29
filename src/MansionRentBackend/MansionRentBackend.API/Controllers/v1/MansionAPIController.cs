@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using MansionRentBackend.API.Model;
+using MansionRentBackend.API.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -27,9 +27,9 @@ namespace MansionRentBackend.API.Controllers.v1
         {
             try
             {
-                var model = _scope.Resolve<VillaListModel>();
+                var model = _scope.Resolve<MansionListDto>();
                 //var villas = await model.GetAllVillas();
-                var villas = await model.GetAllVillasByPage(pageSize, pageNumber);
+                var villas = await model.GetAllMansionsByPage(pageSize, pageNumber);
 
                 if (occupancy > 0)
                 {
@@ -41,7 +41,7 @@ namespace MansionRentBackend.API.Controllers.v1
                     villas = villas.Where(u => u.Name.ToLower().Contains(search)).ToList();
                 }
 
-                var pagination = _scope.Resolve<PaginationModel>();
+                var pagination = _scope.Resolve<PaginationDto>();
                 pagination.PageNumber = pageNumber;
                 pagination.PageSize = pageSize;
 
@@ -73,13 +73,13 @@ namespace MansionRentBackend.API.Controllers.v1
         {
             try
             {
-                var model = _scope.Resolve<VillaListModel>();
-                var villa = await model.GetVilla(id);
+                var mansionDto = _scope.Resolve<MansionListDto>();
+                var mansion = await mansionDto.GetMansion(id);
 
                 _response.StatusCode = HttpStatusCode.OK;
                 _response.IsSuccess = true;
                 _response.ErrorMessages = new List<string>();
-                _response.Result = villa;
+                _response.Result = mansion;
 
                 return Ok(_response);
             }
@@ -98,7 +98,7 @@ namespace MansionRentBackend.API.Controllers.v1
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         public async Task<IActionResult> Post([FromBody] MansionCreateDto mantionDto)
         {
             try
@@ -129,13 +129,13 @@ namespace MansionRentBackend.API.Controllers.v1
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             try
             {
-                var model = _scope.Resolve<VillaListModel>();
-                await model.DeleteVilla(id);
+                var model = _scope.Resolve<MansionListDto>();
+                await model.DeleteMansion(id);
 
                 _response.StatusCode = HttpStatusCode.NoContent;
                 _response.IsSuccess = true;
@@ -159,7 +159,7 @@ namespace MansionRentBackend.API.Controllers.v1
         }
 
         [HttpPut]
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         public async Task<IActionResult> Put([FromBody] MansionEditDto mansionDto)
         {
             try

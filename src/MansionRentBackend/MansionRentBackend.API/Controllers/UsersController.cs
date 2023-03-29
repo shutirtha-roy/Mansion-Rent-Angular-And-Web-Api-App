@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using AutoMapper;
+using MansionRentBackend.API.DTOs;
 using MansionRentBackend.Application.BusinessObjects;
 using MansionRentBackend.Application.Services;
-using MansionRentBackend.API.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -26,9 +26,9 @@ namespace MansionRentBackend.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginRequestModel model)
+        public async Task<IActionResult> Login(LoginRequestDto loginDto)
         {
-            var loginReponse = await _userService.Login(_mapper.Map<Login>(model));
+            var loginReponse = await _userService.Login(_mapper.Map<Login>(loginDto));
             if (loginReponse.User == null || string.IsNullOrEmpty(loginReponse.Token))
             {
                 _response.StatusCode = HttpStatusCode.BadRequest;
@@ -45,9 +45,9 @@ namespace MansionRentBackend.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(RegistrationRequestModel model)
+        public async Task<IActionResult> Register(RegistrationRequestDto dtoRegistration)
         {
-            var ifUserNameUnique = await _userService.IsUniqueUser(model.UserName);
+            var ifUserNameUnique = await _userService.IsUniqueUser(dtoRegistration.UserName);
             if (!ifUserNameUnique)
             {
                 _response.StatusCode = HttpStatusCode.BadRequest;
@@ -56,7 +56,7 @@ namespace MansionRentBackend.API.Controllers
                 return BadRequest(_response);
             }
 
-            var user = await _userService.Register(_mapper.Map<Registration>(model));
+            var user = await _userService.Register(_mapper.Map<Registration>(dtoRegistration));
             if (user == null)
             {
                 _response.StatusCode = HttpStatusCode.BadRequest;

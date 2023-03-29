@@ -1,26 +1,25 @@
 ﻿using AutoMapper;
-using MansionBO = MansionRentBackend.Application.BusinessObjects.Mansion;
+using MansionRentBackend.API.DTOs;
 using LoginBO = MansionRentBackend.Application.BusinessObjects.Login;
+using MansionBO = MansionRentBackend.Application.BusinessObjects.Mansion;
 using RegistrationBO = MansionRentBackend.Application.BusinessObjects.Registration;
-using MansionRentBackend.API.Model;
 
-namespace MansionRentBackend.API.Profiles
+namespace MansionRentBackend.API.Profiles;
+
+public class WebProfile : Profile
 {
-    public class WebProfile : Profile
+    public WebProfile()
     {
-        public WebProfile()
-        {
-            CreateMap<MansionCreateDto, MansionBO>()
-                .ReverseMap();
+        CreateMap<MansionCreateDto, MansionBO>()
+            .ReverseMap();
 
-            CreateMap<MansionBO, MansionEditDto>()
-                .ReverseMap();
+        CreateMap<MansionBO, MansionEditDto>()
+            .ReverseMap();
 
-            CreateMap<LoginRequestModel, LoginBO>()
-                .ReverseMap();
+        CreateMap<LoginRequestDto, LoginBO>()
+            .ReverseMap();
 
-            CreateMap<RegistrationRequestModel, RegistrationBO>()
-                .ReverseMap();
-        }
+        CreateMap<RegistrationRequestDto, RegistrationBO>()
+            .ReverseMap();
     }
 }
