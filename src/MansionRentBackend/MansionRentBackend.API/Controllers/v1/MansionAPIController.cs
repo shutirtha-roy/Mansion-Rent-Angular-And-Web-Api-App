@@ -22,7 +22,7 @@ namespace MansionRentBackend.API.Controllers.v1
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<object>> GetMansions([FromQuery(Name = "filterOccupancy")] int? occupancy,
+        public async Task<ActionResult<object>> Get([FromQuery(Name = "filterOccupancy")] int? occupancy,
             [FromQuery] string? search, int pageSize = 0, int pageNumber = 1)
         {
             try
@@ -69,7 +69,7 @@ namespace MansionRentBackend.API.Controllers.v1
         }
 
         [HttpGet("{id}")]
-        public async Task<object> GetMantion([FromRoute] Guid id)
+        public async Task<object> Get([FromRoute] Guid id)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace MansionRentBackend.API.Controllers.v1
 
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> CreateMantion([FromBody] VillaCreateModel model)
+        public async Task<IActionResult> Post([FromBody] VillaCreateModel model)
         {
             try
             {
@@ -130,7 +130,7 @@ namespace MansionRentBackend.API.Controllers.v1
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> DeleteMantion([FromRoute] Guid id)
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             try
             {
@@ -160,7 +160,7 @@ namespace MansionRentBackend.API.Controllers.v1
 
         [HttpPut]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> UpdateMantion([FromBody] VillaEditModel model)
+        public async Task<IActionResult> Put([FromBody] VillaEditModel model)
         {
             try
             {
