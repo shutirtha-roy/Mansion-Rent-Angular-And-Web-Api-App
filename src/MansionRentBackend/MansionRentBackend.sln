@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MansionRentBackend.Domain",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MansionRentBackend.Application.UnitTests", "Tests\MansionRentBackend.Application.UnitTests\MansionRentBackend.Application.UnitTests.csproj", "{9BEEB075-1E95-479A-8FAB-19726AC875BA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{80DCE070-239E-49A8-9815-8D16621E7E00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9BEEB075-1E95-479A-8FAB-19726AC875BA} = {80DCE070-239E-49A8-9815-8D16621E7E00}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9EDF8D54-5476-4F3C-B0B2-0FB2042DE911}
