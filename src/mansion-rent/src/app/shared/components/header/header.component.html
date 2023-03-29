@@ -22,6 +22,10 @@
                     <li class="nav-item" *ngIf="isAuthenticated()">
                         <a class="btn nav-link text-light" (click)="logout()">Logout</a>
                     </li>
+                    <li class="nav-item ms-auto" *ngIf="isAuthenticated()">
+                        <a class="btn nav-link text-light">Welcome {{ name }}</a>
+                    </li>
+
                 </ul>
             </div>
         </div>

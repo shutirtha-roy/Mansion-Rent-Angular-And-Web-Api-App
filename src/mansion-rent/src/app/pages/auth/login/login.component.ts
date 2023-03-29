@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
           //alert(res);
           this.toaster.success("Login Successful");
           this.auth.storeToken(res.result.token);
+          this.auth.storeName(res.result.user.name);
           this.loginForm.reset();
           this.router.navigate(['mansion']);
         },

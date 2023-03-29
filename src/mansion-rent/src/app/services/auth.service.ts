@@ -35,4 +35,12 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
+
+  storeName(name: string) {
+    localStorage.setItem('name', name);
+  }
+
+  getName() {
+    return localStorage.getItem('name');
+  }
 }

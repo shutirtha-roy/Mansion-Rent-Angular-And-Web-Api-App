@@ -8,16 +8,23 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  name: any;
+
   constructor(private auth: AuthService, private router: Router) {
 
   }
 
   isAuthenticated(): boolean {
     if (this.auth.isLoggedIn()) {
+      this.setName();
       return true;
     }
 
     return false;
+  }
+
+  setName() {
+    this.name = this.auth.getName();
   }
 
   logout(): void {
