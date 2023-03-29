@@ -28,17 +28,7 @@ namespace MansionRentBackend.API.Controllers.v1
             try
             {
                 var mansionDto = _scope.Resolve<MansionListDto>();
-                var villas = await mansionDto.GetAllMansionsByPage(pageSize, pageNumber);
-
-                if (occupancy > 0)
-                {
-                    villas = villas.Where(o => o.Occupancy == occupancy).ToList();
-                }
-
-                if (!string.IsNullOrEmpty(search))
-                {
-                    villas = villas.Where(u => u.Name.ToLower().Contains(search)).ToList();
-                }
+                var villas = await mansionDto.GetAllMansionsByPage(pageSize, pageNumber, occupancy, search);
 
                 var pagination = _scope.Resolve<PaginationDto>();
                 pagination.PageNumber = pageNumber;
