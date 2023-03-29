@@ -6,14 +6,14 @@ namespace MansionRentBackend.Application.UnitOfWorks
 {
     public class ApplicationUnitOfWork : UnitOfWork, IApplicationUnitOfWork
     {
-        public IVillaRepository Villas { get; private set; }
+        public IMansionRepository Mansions { get; private set; }
         public IUserRepository Users { get; private set; }
 
         public ApplicationUnitOfWork(IApplicationDbContext dbContext, 
-            IVillaRepository villaRepository,
+            IMansionRepository mansionRepository,
             IUserRepository userRepository) : base((DbContext)dbContext)
         {
-            Villas = villaRepository;
+            Mansions = mansionRepository;
             Users = userRepository;
         }
     }

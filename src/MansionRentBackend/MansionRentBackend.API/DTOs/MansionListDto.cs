@@ -6,39 +6,39 @@ namespace MansionRentBackend.API.DTOs;
 
 public class MansionListDto : BaseDto
 {
-    private IVillaService _villaService;
+    private IMansionService _mansionService;
 
-    public MansionListDto(IVillaService villaService)
+    public MansionListDto(IMansionService mansionService)
     {
-        _villaService = villaService;
+        _mansionService = mansionService;
     }
 
     public override void ResolveDependency(ILifetimeScope scope)
     {
         base.ResolveDependency(scope);
-        _villaService = _scope.Resolve<IVillaService>();
+        _mansionService = _scope.Resolve<IMansionService>();
     }
 
     internal async Task<MansionBO> GetMansion(Guid id)
     {
-        var mansion = await _villaService.GetVilla(id);
+        var mansion = await _mansionService.GetMansion(id);
         return mansion;
     }
 
     internal async Task<IList<MansionBO>> GetAllVillas()
     {
-        var mansions = await _villaService.GetVillas();
+        var mansions = await _mansionService.GetMansions();
         return mansions;
     }
 
     internal async Task<IList<MansionBO>> GetAllMansionsByPage(int pageSize, int pageNumber)
     {
-        var mansions = await _villaService.GetAllWithRespectToPage(pageSize, pageNumber);
+        var mansions = await _mansionService.GetAllWithRespectToPage(pageSize, pageNumber);
         return mansions;
     }
 
     internal async Task DeleteMansion(Guid id)
     {
-        await _villaService.DeleteVilla(id);
+        await _mansionService.DeleteMansion(id);
     }
 }

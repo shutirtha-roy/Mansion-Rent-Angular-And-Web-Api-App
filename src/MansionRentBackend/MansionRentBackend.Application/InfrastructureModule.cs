@@ -29,12 +29,12 @@ namespace MansionRentBackend.Application
                 .WithParameter("migrationAssemblyName", _migrationAssemblyName)
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<VillaService>()
-                .As<IVillaService>()
+            builder.RegisterType<MansionService>()
+                .As<IMansionService>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<VillaRepository>()
-                .As<IVillaRepository>()
+            builder.RegisterType<MansionRepository>()
+                .As<IMansionRepository>()
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<UserRepository>()

@@ -3,13 +3,13 @@ using MansionEO = MansionRentBackend.Application.Entities.Mansion;
 
 namespace MansionRentBackend.Application.Services
 {
-    public interface IVillaService
+    public interface IMansionService
     {
-        Task CreateVilla(MansionBO villa);
-        Task EditVilla(MansionBO villa);
-        Task DeleteVilla(Guid id);
-        Task<MansionBO> GetVilla(Guid id);
-        Task<IList<MansionBO>> GetVillas();
+        Task CreateMansion(MansionBO mansion);
+        Task EditMansion(MansionBO mansion);
+        Task DeleteMansion(Guid id);
+        Task<MansionBO> GetMansion(Guid id);
+        Task<IList<MansionBO>> GetMansions();
         Task<IList<MansionBO>> GetAllWithRespectToPage(int pageSize, int pageNumber);
     }
 }

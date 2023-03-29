@@ -17,23 +17,23 @@ public class MansionCreateDto : BaseDto
     public DateTime UpdatedDate { get; set; }
     public bool IsDeleted { get; set; } = false;
 
-    private IVillaService _villaService;
+    private IMansionService _mansionService;
     private IMapper _mapper;
 
     public MansionCreateDto()
     {
     }
 
-    public MansionCreateDto(IVillaService villaService, IMapper mapper)
+    public MansionCreateDto(IMansionService mansionService, IMapper mapper)
     {
-        _villaService = villaService;
+        _mansionService = mansionService;
         _mapper = mapper;
     }
 
     public override void ResolveDependency(ILifetimeScope scope)
     {
         base.ResolveDependency(scope);
-        _villaService = _scope.Resolve<IVillaService>();
+        _mansionService = _scope.Resolve<IMansionService>();
         _mapper = _scope.Resolve<IMapper>();
     }
 
@@ -41,6 +41,6 @@ public class MansionCreateDto : BaseDto
     {
         var villa = _mapper.Map<VillaBO>(this);
 
-        await _villaService.CreateVilla(villa);
+        await _mansionService.CreateMansion(villa);
     }
 }

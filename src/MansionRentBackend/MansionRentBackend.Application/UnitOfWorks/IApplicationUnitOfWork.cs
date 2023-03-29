@@ -4,7 +4,7 @@ namespace MansionRentBackend.Application.UnitOfWorks
 {
     public interface IApplicationUnitOfWork : IUnitOfWork
     {
-        IVillaRepository Villas { get; }
+        IMansionRepository Mansions { get; }
         IUserRepository Users { get; }
     }
 }

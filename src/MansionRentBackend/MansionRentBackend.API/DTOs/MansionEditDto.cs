@@ -18,35 +18,35 @@ public class MansionEditDto : BaseDto
     public DateTime UpdatedDate { get; set; }
     public bool IsDeleted { get; set; }
 
-    private IVillaService _villaService;
+    private IMansionService _mansionService;
     private IMapper _mapper;
 
     public MansionEditDto() : base()
     {
     }
 
-    public MansionEditDto(IVillaService villaService, IMapper mapper)
+    public MansionEditDto(IMansionService mansionService, IMapper mapper)
     {
-        _villaService = villaService;
+        _mansionService = mansionService;
         _mapper = mapper;
     }
 
     public override void ResolveDependency(ILifetimeScope scope)
     {
         base.ResolveDependency(scope);
-        _villaService = _scope.Resolve<IVillaService>();
+        _mansionService = _scope.Resolve<IMansionService>();
         _mapper = _scope.Resolve<IMapper>();
     }
 
     internal async Task<MansionEditDto> GetMansion(Guid id)
     {
-        var villa = await _villaService.GetVilla(id);
-        return _mapper.Map<MansionEditDto>(villa);
+        var mansion = await _mansionService.GetMansion(id);
+        return _mapper.Map<MansionEditDto>(mansion);
     }
 
     internal async Task EditMansion()
     {
-        var villa = _mapper.Map<MantionBO>(this);
-        await _villaService.EditVilla(villa);
+        var mansion = _mapper.Map<MantionBO>(this);
+        await _mansionService.EditMansion(mansion);
     }
 }
