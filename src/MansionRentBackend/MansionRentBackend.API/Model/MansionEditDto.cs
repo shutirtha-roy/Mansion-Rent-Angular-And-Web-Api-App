@@ -5,27 +5,27 @@ using VillaBO = MansionRentBackend.Application.BusinessObjects.Mansion;
 
 namespace MansionRentBackend.API.Model
 {
-    public class VillaEditModel : BaseModel
+    public class MansionEditDto : BaseModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
-        public string Details { get; set; }
+        public string? Details { get; set; }
         public double Rate { get; set; }
         public int Sqft { get; set; }
         public int Occupancy { get; set; }
-        public string ImageUrl { get; set; }
-        public string Amenity { get; set; }
+        public string? Base64Image { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
+        public bool IsDeleted { get; set; }
 
         private IVillaService _villaService;
         private IMapper _mapper;
 
-        public VillaEditModel() : base()
+        public MansionEditDto() : base()
         {
         }
 
-        public VillaEditModel(IVillaService villaService, IMapper mapper)
+        public MansionEditDto(IVillaService villaService, IMapper mapper)
         {
             _villaService = villaService;
             _mapper = mapper;
@@ -38,13 +38,13 @@ namespace MansionRentBackend.API.Model
             _mapper = _scope.Resolve<IMapper>();
         }
 
-        internal async Task<VillaEditModel> GetVilla(Guid id)
+        internal async Task<MansionEditDto> GetMansion(Guid id)
         {
             var villa = await _villaService.GetVilla(id);
-            return _mapper.Map<VillaEditModel>(villa);
+            return _mapper.Map<MansionEditDto>(villa);
         }
 
-        internal async Task EditVilla()
+        internal async Task EditMansion()
         {
             var villa = _mapper.Map<VillaBO>(this);
             await _villaService.EditVilla(villa);

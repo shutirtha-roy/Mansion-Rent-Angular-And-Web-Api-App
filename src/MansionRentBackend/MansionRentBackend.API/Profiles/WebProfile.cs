@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using VillaBO = MansionRentBackend.Application.BusinessObjects.Mansion;
+using MansionBO = MansionRentBackend.Application.BusinessObjects.Mansion;
 using LoginBO = MansionRentBackend.Application.BusinessObjects.Login;
 using RegistrationBO = MansionRentBackend.Application.BusinessObjects.Registration;
 using MansionRentBackend.API.Model;
@@ -10,10 +10,10 @@ namespace MansionRentBackend.API.Profiles
     {
         public WebProfile()
         {
-            CreateMap<VillaCreateModel, VillaBO>()
+            CreateMap<MansionCreateDto, MansionBO>()
                 .ReverseMap();
 
-            CreateMap<VillaBO, VillaEditModel>()
+            CreateMap<MansionBO, MansionEditDto>()
                 .ReverseMap();
 
             CreateMap<LoginRequestModel, LoginBO>()

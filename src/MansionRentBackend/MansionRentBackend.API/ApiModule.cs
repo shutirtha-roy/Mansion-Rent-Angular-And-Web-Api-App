@@ -7,13 +7,13 @@ namespace MansionRentBackend.API
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<VillaCreateModel>()
+            builder.RegisterType<MansionCreateDto>()
                 .AsSelf();
 
             builder.RegisterType<VillaListModel>()
                 .AsSelf();
 
-            builder.RegisterType<VillaEditModel>()
+            builder.RegisterType<MansionEditDto>()
                 .AsSelf();
 
             builder.RegisterType<APIResponse>()

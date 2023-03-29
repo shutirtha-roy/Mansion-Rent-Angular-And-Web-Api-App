@@ -99,13 +99,13 @@ namespace MansionRentBackend.API.Controllers.v1
 
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> Post([FromBody] VillaCreateModel model)
+        public async Task<IActionResult> Post([FromBody] MansionCreateDto mantionDto)
         {
             try
             {
-                model.ResolveDependency(_scope);
+                mantionDto.ResolveDependency(_scope);
 
-                await model.CreateVilla();
+                await mantionDto.CreateMantion();
 
                 _response.StatusCode = HttpStatusCode.NoContent;
                 _response.IsSuccess = true;
@@ -160,12 +160,12 @@ namespace MansionRentBackend.API.Controllers.v1
 
         [HttpPut]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> Put([FromBody] VillaEditModel model)
+        public async Task<IActionResult> Put([FromBody] MansionEditDto mansionDto)
         {
             try
             {
-                model.ResolveDependency(_scope);
-                await model.EditVilla();
+                mansionDto.ResolveDependency(_scope);
+                await mansionDto.EditMansion();
 
                 _response.StatusCode = HttpStatusCode.NoContent;
                 _response.IsSuccess = true;
