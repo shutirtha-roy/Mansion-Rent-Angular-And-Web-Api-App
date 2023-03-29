@@ -8,9 +8,8 @@ using System.Net;
 
 namespace MansionRentBackend.API.Controllers
 {
-    [Route("api/v{version:apiVersion}/UsersAuth")]
+    [Route("api/v1/UsersAuth")]
     [ApiController]
-    [ApiVersionNeutral]
     public class UsersController : Controller
     {
         private readonly IUserService _userService;

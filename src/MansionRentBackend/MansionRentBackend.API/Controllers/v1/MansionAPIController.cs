@@ -7,9 +7,8 @@ using System.Text.Json;
 
 namespace MansionRentBackend.API.Controllers.v1
 {
-    [Route("api/v{version:apiVersion}/villaApi")]
+    [Route("api/v1/[controller]")]
     [ApiController]
-    [ApiVersion("1.0")]
     public class MansionAPIController : ControllerBase
     {
         private readonly ILifetimeScope _scope;
@@ -23,9 +22,7 @@ namespace MansionRentBackend.API.Controllers.v1
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        //[ResponseCache(Duration = 30)]
-        [ResponseCache(CacheProfileName = "Default30")]
-        public async Task<ActionResult<object>> GetVillas([FromQuery(Name = "filterOccupancy")] int? occupancy,
+        public async Task<ActionResult<object>> GetMansions([FromQuery(Name = "filterOccupancy")] int? occupancy,
             [FromQuery] string? search, int pageSize = 0, int pageNumber = 1)
         {
             try
@@ -72,7 +69,6 @@ namespace MansionRentBackend.API.Controllers.v1
         }
 
         [HttpGet("{id}")]
-        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
         public async Task<object> GetVilla(Guid id)
         {
             try
