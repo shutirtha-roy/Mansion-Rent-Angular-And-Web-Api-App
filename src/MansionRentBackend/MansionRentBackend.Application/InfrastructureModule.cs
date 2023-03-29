@@ -2,6 +2,7 @@
 using MansionRentBackend.Application.DbContexts;
 using MansionRentBackend.Application.Repositories;
 using MansionRentBackend.Application.Services;
+using MansionRentBackend.Application.Services.Auth;
 using MansionRentBackend.Application.UnitOfWorks;
 using MansionRentBackend.Domain.IUnitOfWorks;
 using MansionRentBackend.Domain.Repositories;
@@ -49,6 +50,20 @@ namespace MansionRentBackend.Application
 
             builder.RegisterType<ApplicationUnitOfWork>()
                 .As<IApplicationUnitOfWork>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<ApplicationUserManager>().AsSelf();
+
+            builder.RegisterType<ApplicationSignInManager>().AsSelf();
+
+            builder.RegisterType<ApplicationRoleManager>().AsSelf();
+
+            builder.RegisterType<AccountService>()
+                .As<IAccountService>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<TokenService>()
+                .As<ITokenService>()
                 .InstancePerLifetimeScope();
 
             base.Load(builder);

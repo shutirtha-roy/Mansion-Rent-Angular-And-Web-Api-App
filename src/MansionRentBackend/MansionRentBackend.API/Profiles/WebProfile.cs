@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MansionRentBackend.API.DTOs;
+using MansionRentBackend.Application.BusinessObjects;
 using LoginBO = MansionRentBackend.Application.BusinessObjects.Login;
 using MansionBO = MansionRentBackend.Application.BusinessObjects.Mansion;
 using RegistrationBO = MansionRentBackend.Application.BusinessObjects.Registration;
@@ -20,6 +21,9 @@ public class WebProfile : Profile
             .ReverseMap();
 
         CreateMap<RegistrationRequestDto, RegistrationBO>()
+            .ReverseMap();
+
+        CreateMap<LoginResponseDto, LoginRequestBO>()
             .ReverseMap();
     }
 }

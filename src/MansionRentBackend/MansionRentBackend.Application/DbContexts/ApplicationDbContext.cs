@@ -1,9 +1,13 @@
-﻿using MansionRentBackend.Domain.Entities;
+﻿using MansionRentBackend.Application.Entities;
+using MansionRentBackend.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace MansionRentBackend.Application.DbContexts
 {
-    public class ApplicationDbContext : DbContext, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole,
+        Guid, ApplicationUserClaim, ApplicationUserRole, ApplicationUserLogin,
+        ApplicationRoleClaim, ApplicationUserToken>, IApplicationDbContext
     {
         private readonly string _connectionString;
         private readonly string _migrationAssemblyName;
