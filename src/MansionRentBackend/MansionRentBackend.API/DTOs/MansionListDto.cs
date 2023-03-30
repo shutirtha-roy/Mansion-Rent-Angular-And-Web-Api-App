@@ -25,26 +25,9 @@ public class MansionListDto : BaseDto
         return mansion;
     }
 
-    internal async Task<IList<MansionBO>> GetAllVillas()
+    internal async Task<IList<MansionBO>> GetAllMansions()
     {
         var mansions = await _mansionService.GetMansions();
-        return mansions;
-    }
-
-    internal async Task<IList<MansionBO>> GetAllMansionsByPage(int pageSize, int pageNumber, int? occupancy, string? search)
-    {
-        var mansions = await _mansionService.GetAllWithRespectToPage(pageSize, pageNumber);
-
-        if (occupancy > 0)
-        {
-            mansions = mansions.Where(o => o.Occupancy == occupancy).ToList();
-        }
-
-        if (!string.IsNullOrEmpty(search))
-        {
-            mansions = mansions.Where(u => u.Name.ToLower().Contains(search)).ToList();
-        }
-
         return mansions;
     }
 

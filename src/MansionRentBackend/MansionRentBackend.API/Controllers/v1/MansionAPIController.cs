@@ -23,19 +23,12 @@ namespace MansionRentBackend.API.Controllers.v1
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<object>> Get([FromQuery(Name = "filterOccupancy")] int? occupancy,
-            [FromQuery] string? search, int pageSize = 0, int pageNumber = 1)
+        public async Task<ActionResult<object>> Get()
         {
             try
             {
                 var mansionDto = _scope.Resolve<MansionListDto>();
-                var villas = await mansionDto.GetAllMansionsByPage(pageSize, pageNumber, occupancy, search);
-
-                var pagination = _scope.Resolve<PaginationDto>();
-                pagination.PageNumber = pageNumber;
-                pagination.PageSize = pageSize;
-
-                Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagination));
+                var villas = await mansionDto.GetAllMansions();
 
                 _response.StatusCode = HttpStatusCode.OK;
                 _response.IsSuccess = true;

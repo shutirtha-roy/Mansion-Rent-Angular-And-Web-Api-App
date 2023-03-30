@@ -10,6 +10,5 @@ namespace MansionRentBackend.Application.Services
         Task DeleteMansion(Guid id);
         Task<MansionBO> GetMansion(Guid id);
         Task<IList<MansionBO>> GetMansions();
-        Task<IList<MansionBO>> GetAllWithRespectToPage(int pageSize, int pageNumber);
     }
 }

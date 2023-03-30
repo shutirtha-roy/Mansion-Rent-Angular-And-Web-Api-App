@@ -77,20 +77,5 @@ namespace MansionRentBackend.Application.Services
 
             return mansions;
         }
-
-        public async Task<IList<MansionBO>> GetAllWithRespectToPage(int pageSize, int pageNumber)
-        {
-            var villasEO = await _applicationUnitOfWork.Mansions.GetAllAccordingToPageAsync(null, "", pageSize, pageNumber);
-
-            var villas = new List<MansionBO>();
-
-            foreach (var villaEO in villasEO)
-            {
-                var villaBO = _mapper.Map<MansionBO>(villaEO);
-                villas.Add(villaBO);
-            }
-
-            return villas;
-        }
     }
 }

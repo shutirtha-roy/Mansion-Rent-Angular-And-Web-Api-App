@@ -13,8 +13,6 @@ namespace MansionRentBackend.Domain.Repositories
         Task Edit(TEntity entityToUpdate);
         Task<int> GetCount(Expression<Func<TEntity, bool>> filter = null);
         Task<IList<TEntity>> Get(Expression<Func<TEntity, bool>> filter, string includeProperties = "");
-        Task<List<TEntity>> GetAllAccordingToPageAsync(Expression<Func<TEntity, bool>>? filter = null, string? includeProperties = null,
-            int pageSize = 0, int pageNumber = 1);
         Task<IList<TEntity>> GetAll();
         Task<TEntity> GetById(TKey id);
         Task<(IList<TEntity> data, int total, int totalDisplay)> Get(
