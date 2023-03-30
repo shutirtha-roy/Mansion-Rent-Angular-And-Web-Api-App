@@ -49,7 +49,9 @@ namespace MansionRentBackend.Application.Services
             if (mansionEntity == null)
                 throw new Exception("Mansion doesn't exist");
 
+            mansion.UserId = mansionEntity.UserId;
             mansionEntity = _mapper.Map(mansion, mansionEntity);
+
             _applicationUnitOfWork.Save();
         }
 
