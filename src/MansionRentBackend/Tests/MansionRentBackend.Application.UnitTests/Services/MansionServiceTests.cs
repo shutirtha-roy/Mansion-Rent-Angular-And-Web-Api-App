@@ -1,14 +1,15 @@
 ﻿using Autofac.Extras.Moq;
 using AutoMapper;
+using MansionRentBackend.Application.Repositories;
 using MansionRentBackend.Application.Services;
-using MansionRentBackend.Domain.IUnitOfWorks;
+using MansionRentBackend.Application.UnitOfWorks;
 using MansionRentBackend.Domain.Repositories;
 using Moq;
 using NUnit.Framework;
 using Shouldly;
 using System.Linq.Expressions;
 using MansionBO = MansionRentBackend.Application.BusinessObjects.Mansion;
-using MansionEO = MansionRentBackend.Domain.Entities.Mansion;
+using MansionEO = MansionRentBackend.Application.Entities.Mansion;
 
 namespace MansionRentBackend.Application.UnitTests.Services;
 
@@ -49,19 +50,72 @@ public class MansionServiceTests
         _mock?.Dispose();
     }
 
-    [Test]
-    public void CreateMansion_MansionExists_ThrowsError()
+    [Test, Category("unit test")]
+    public void CreateMansion_MansionDoesNotExist_CreatesMansion()
     {
+        var userId = Guid.NewGuid();
+
         var mansion = new MansionBO
         {
-            Name= "Test",
+            Name = "Test",
             Details = "",
             Rate = 2,
             Sqft = 4,
             Occupancy = 6,
             Base64Image = "BASE64_STRING",
             CreatedDate = DateTime.Now,
-            UpdatedDate= DateTime.Now,
+            UpdatedDate = DateTime.Now,
+            IsDeleted = false,
+            UserId = userId
+        };
+
+        var mansionEntity = new MansionEO
+        {
+            Name = "Test",
+            Details = "",
+            Rate = 2,
+            Sqft = 4,
+            Occupancy = 6,
+            Base64Image = "BASE64_STRING",
+            CreatedDate = DateTime.Now,
+            UpdatedDate = DateTime.Now,
+            IsDeleted = false,
+            UserId = userId
+        };
+
+        _applicationtUnitOfWork.Setup(x => x.Mansions).Returns(_mansionRepositoryMock.Object);
+
+        _mansionRepositoryMock.Setup(x => x.GetCount(It.IsAny<Expression<Func<MansionEO, bool>>>())).ReturnsAsync(0);
+
+        _mapperMock.Setup(x => x.Map<MansionEO>(mansion))
+                .Returns(mansionEntity).Verifiable();
+
+        _mansionRepositoryMock.Setup(x => x.Add(mansionEntity)).Returns(Task.CompletedTask)
+                .Verifiable();
+
+        _applicationtUnitOfWork.Setup(x => x.Save()).Verifiable();
+
+        _mansionService.CreateMansion(mansion);
+
+        this.ShouldSatisfyAllConditions(
+            () => _applicationtUnitOfWork.VerifyAll(),
+            () => _mansionRepositoryMock.VerifyAll()
+        );
+    }
+
+    [Test, Category("unit test")]
+    public void CreateMansion_MansionExists_ThrowsError()
+    {
+        var mansion = new MansionBO
+        {
+            Name = "Test",
+            Details = "",
+            Rate = 2,
+            Sqft = 4,
+            Occupancy = 6,
+            Base64Image = "BASE64_STRING",
+            CreatedDate = DateTime.Now,
+            UpdatedDate = DateTime.Now,
             IsDeleted = false
         };
 
