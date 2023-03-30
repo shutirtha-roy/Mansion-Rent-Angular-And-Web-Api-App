@@ -176,4 +176,34 @@ public class MansionServiceTests
             () => _mansionService.DeleteMansion(userId)
         );
     }
+
+    [Test, Category("unit test")]
+    public void EditMansion_MansionDoesNotExist_ThrowsError()
+    {
+        var userId = Guid.NewGuid();
+
+        var mansion = new MansionBO
+        {
+            Name = "Test",
+            Details = "",
+            Rate = 2,
+            Sqft = 4,
+            Occupancy = 6,
+            Base64Image = "BASE64_STRING",
+            CreatedDate = DateTime.Now,
+            UpdatedDate = DateTime.Now,
+            IsDeleted = false,
+            UserId = userId
+        };
+
+        _applicationtUnitOfWork.Setup(x => x.Mansions).Returns(_mansionRepositoryMock.Object);
+
+        _mansionRepositoryMock.Setup(x => x.GetCount(It.IsAny<Expression<Func<MansionEO, bool>>>())).ReturnsAsync(null);
+
+        Should.Throw<Exception>
+        (
+            () => _mansionService.EditMansion(mansion)
+        );
+    }
+    
 }
