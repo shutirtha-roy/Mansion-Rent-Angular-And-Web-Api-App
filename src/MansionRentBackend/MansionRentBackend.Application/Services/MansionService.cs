@@ -60,7 +60,7 @@ namespace MansionRentBackend.Application.Services
             var mantionEntity = await _applicationUnitOfWork.Mansions.GetById(id);
 
             if (mantionEntity == null)
-                throw new Exception("Villa doesn't exist");
+                throw new Exception("Mansion doesn't exist");
 
             var mantionBO = _mapper.Map<MansionBO>(mantionEntity);
 
