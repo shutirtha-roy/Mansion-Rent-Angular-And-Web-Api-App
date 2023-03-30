@@ -32,14 +32,4 @@ public class TokenService : ITokenService
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
-
-    public async Task<(string token, DateTime expireDate)> GetJwtTokenWithExpireDate(IList<Claim> claims)
-    {
-        var token = await GetJwtToken(claims);
-        var handler = new JwtSecurityTokenHandler();
-        var jwtSecurityToken = handler.ReadJwtToken(token);
-        var lst = jwtSecurityToken.Claims.Where(x => x.Type == "UserId").FirstOrDefault();
-
-        return (token, jwtSecurityToken.ValidTo);
-    }
 }

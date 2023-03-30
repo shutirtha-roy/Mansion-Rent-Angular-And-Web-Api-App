@@ -36,7 +36,7 @@ public class AccountService : IAccountService
             {
                 var claims = (await _userManager.GetClaimsAsync(applicationUser)).ToList();
                 claims.Add(new Claim(ClaimTypes.Sid, applicationUser.Id.ToString()));
-                var jwtToken = await _tokenService.GetJwtTokenWithExpireDate(claims);
+                var jwtToken = await _tokenService.GetJwtToken(claims);
 
                 var userBO = new LoginRequestBO
                 {
@@ -48,7 +48,7 @@ public class AccountService : IAccountService
                         Password = applicationUser.PasswordHash,
                         Role = "admin"
                     },
-                    Token = jwtToken.token
+                    Token = jwtToken
                 };
 
                 return userBO;
