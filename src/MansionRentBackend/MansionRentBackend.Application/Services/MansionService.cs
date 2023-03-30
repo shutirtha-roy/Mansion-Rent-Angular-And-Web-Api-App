@@ -65,7 +65,7 @@ namespace MansionRentBackend.Application.Services
 
         public async Task<IList<MansionBO>> GetMansions()
         {
-            var mansionsEO = await _applicationUnitOfWork.Mansions.GetAll();
+            var mansionsEO = await _applicationUnitOfWork.Mansions.Get(x => x.IsDeleted == false, "");
 
             var mansions = new List<MansionBO>();
 
