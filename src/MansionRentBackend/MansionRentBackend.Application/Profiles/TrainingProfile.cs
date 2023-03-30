@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MansionBO = MansionRentBackend.Application.BusinessObjects.Mansion;
-using MansionEO = MansionRentBackend.Domain.Entities.Mansion;
+using MansionEO = MansionRentBackend.Application.Entities.Mansion;
 using LocalUserBO = MansionRentBackend.Application.BusinessObjects.LocalUser;
 using LocalUserEO = MansionRentBackend.Domain.Entities.LocalUser;
 using RegistrationBO = MansionRentBackend.Application.BusinessObjects.Registration;

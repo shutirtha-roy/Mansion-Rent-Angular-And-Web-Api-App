@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using MansionRentBackend.Domain.IUnitOfWorks;
+using MansionRentBackend.Application.UnitOfWorks;
 using MansionBO = MansionRentBackend.Application.BusinessObjects.Mansion;
-using MansionEO = MansionRentBackend.Domain.Entities.Mansion;
+using MansionEO = MansionRentBackend.Application.Entities.Mansion;
 
 namespace MansionRentBackend.Application.Services
 {
@@ -72,7 +72,7 @@ namespace MansionRentBackend.Application.Services
 
             var mansions = new List<MansionBO>();
 
-            foreach(var mansionEO in mansionsEO)
+            foreach (var mansionEO in mansionsEO)
             {
                 var mansionBO = _mapper.Map<MansionBO>(mansionEO);
                 mansions.Add(mansionBO);

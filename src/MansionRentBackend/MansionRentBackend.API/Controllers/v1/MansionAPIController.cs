@@ -3,6 +3,7 @@ using MansionRentBackend.API.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using System.Security.Claims;
 using System.Text.Json;
 
 namespace MansionRentBackend.API.Controllers.v1
@@ -25,15 +26,17 @@ namespace MansionRentBackend.API.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<object>> Get()
         {
+            var id = Guid.Parse(User.FindFirstValue(ClaimTypes.Sid));
+
             try
             {
                 var mansionDto = _scope.Resolve<MansionListDto>();
-                var villas = await mansionDto.GetAllMansions();
+                var mansions = await mansionDto.GetAllMansions();
 
                 _response.StatusCode = HttpStatusCode.OK;
                 _response.IsSuccess = true;
                 _response.ErrorMessages = new List<string>();
-                _response.Result = villas;
+                _response.Result = mansions;
 
                 return Ok(_response);
             }
@@ -86,9 +89,9 @@ namespace MansionRentBackend.API.Controllers.v1
         {
             try
             {
+                var id = Guid.Parse(User.FindFirstValue(ClaimTypes.Sid));
                 mantionDto.ResolveDependency(_scope);
-
-                await mantionDto.CreateMantion();
+                await mantionDto.CreateMantion(id);
 
                 _response.StatusCode = HttpStatusCode.NoContent;
                 _response.IsSuccess = true;
@@ -147,8 +150,9 @@ namespace MansionRentBackend.API.Controllers.v1
         {
             try
             {
+                var id = Guid.Parse(User.FindFirstValue(ClaimTypes.Sid));
                 mansionDto.ResolveDependency(_scope);
-                await mansionDto.EditMansion();
+                await mansionDto.EditMansion(id);
 
                 _response.StatusCode = HttpStatusCode.NoContent;
                 _response.IsSuccess = true;

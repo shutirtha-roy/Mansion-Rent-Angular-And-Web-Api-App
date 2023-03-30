@@ -1,5 +1,5 @@
 ﻿using MansionBO = MansionRentBackend.Application.BusinessObjects.Mansion;
-using MansionEO = MansionRentBackend.Domain.Entities.Mansion;
+using MansionEO = MansionRentBackend.Application.Entities.Mansion;
 
 namespace MansionRentBackend.Application.Services
 {

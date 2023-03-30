@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MansionRentBackend.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230330075851_Remove_Unused_LocalUser_Table")]
-    partial class Remove_Unused_LocalUser_Table
+    [Migration("20230330082417_RemoveApplicationUser")]
+    partial class RemoveApplicationUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -225,34 +225,7 @@ namespace MansionRentBackend.API.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("MansionRentBackend.Domain.Entities.LocalUser", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LocalUsers");
-                });
-
-            modelBuilder.Entity("MansionRentBackend.Domain.Entities.Mansion", b =>
+            modelBuilder.Entity("MansionRentBackend.Application.Entities.Mansion", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

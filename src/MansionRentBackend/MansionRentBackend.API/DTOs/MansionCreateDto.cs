@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using AutoMapper;
 using MansionRentBackend.Application.Services;
-using VillaBO = MansionRentBackend.Application.BusinessObjects.Mansion;
+using MansionBO = MansionRentBackend.Application.BusinessObjects.Mansion;
 
 namespace MansionRentBackend.API.DTOs;
 
@@ -37,9 +37,10 @@ public class MansionCreateDto : BaseDto
         _mapper = _scope.Resolve<IMapper>();
     }
 
-    internal async Task CreateMantion()
+    internal async Task CreateMantion(Guid userId)
     {
-        var mansion = _mapper.Map<VillaBO>(this);
+        var mansion = _mapper.Map<MansionBO>(this);
+        mansion.UserId = userId;
 
         await _mansionService.CreateMansion(mansion);
     }

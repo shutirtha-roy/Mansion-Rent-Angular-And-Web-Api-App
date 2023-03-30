@@ -4,8 +4,6 @@ using MansionRentBackend.Application.Repositories;
 using MansionRentBackend.Application.Services;
 using MansionRentBackend.Application.Services.Auth;
 using MansionRentBackend.Application.UnitOfWorks;
-using MansionRentBackend.Domain.IUnitOfWorks;
-using MansionRentBackend.Domain.Repositories;
 
 namespace MansionRentBackend.Application
 {
@@ -38,10 +36,6 @@ namespace MansionRentBackend.Application
 
             builder.RegisterType<MansionRepository>()
                 .As<IMansionRepository>()
-                .InstancePerLifetimeScope();
-
-            builder.RegisterType<UserRepository>()
-                .As<IUserRepository>()
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<ApplicationUnitOfWork>()

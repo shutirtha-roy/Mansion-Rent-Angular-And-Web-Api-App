@@ -1,5 +1,4 @@
 ﻿using MansionRentBackend.Application.Entities;
-using MansionRentBackend.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,10 +31,14 @@ namespace MansionRentBackend.Application.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(n => n.Mansions)
+                .WithOne(a => a.User)
+                .HasForeignKey(x => x.UserId);
+
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Mansion> Mansions { get; set; }
-        public DbSet<LocalUser> LocalUsers { get; set; }
     }
 }

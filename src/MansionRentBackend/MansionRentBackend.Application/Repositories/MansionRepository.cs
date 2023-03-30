@@ -1,6 +1,5 @@
 ﻿using MansionRentBackend.Application.DbContexts;
-using MansionRentBackend.Domain.Entities;
-using MansionRentBackend.Domain.Repositories;
+using MansionRentBackend.Application.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MansionRentBackend.Application.Repositories;

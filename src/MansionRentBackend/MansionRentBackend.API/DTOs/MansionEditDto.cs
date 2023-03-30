@@ -44,9 +44,11 @@ public class MansionEditDto : BaseDto
         return _mapper.Map<MansionEditDto>(mansion);
     }
 
-    internal async Task EditMansion()
+    internal async Task EditMansion(Guid userId)
     {
         var mansion = _mapper.Map<MantionBO>(this);
+        mansion.UserId = userId;
+
         await _mansionService.EditMansion(mansion);
     }
 }

@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MansionRentBackend.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
-namespace MansionRentBackend.Domain.Entities;
+namespace MansionRentBackend.Application.Entities;
 
 public sealed class Mansion : IEntity<Guid>, ISoftDeleteEntity
 {
@@ -16,4 +17,6 @@ public sealed class Mansion : IEntity<Guid>, ISoftDeleteEntity
     public DateTime CreatedDate { get; set; }
     public DateTime UpdatedDate { get; set; }
     public bool IsDeleted { get; set; }
+    public Guid UserId { get; set; }
+    public ApplicationUser User { get; set; }
 }
