@@ -31,12 +31,14 @@ namespace MansionRentBackend.Application.Services
 
         public async Task DeleteMansion(Guid id)
         {
-            var count = await _applicationUnitOfWork.Mansions.GetCount(x => x.Id == id);
+            var count = await _applicationUnitOfWork.Mansions.GetCount(x => x.Id == id && x.IsDeleted == false);
 
             if (count == 0)
                 throw new Exception("Mansion doesn't exist");
 
-            await _applicationUnitOfWork.Mansions.Remove(id);
+            var mansionEntity = await _applicationUnitOfWork.Mansions.GetById(id);
+            mansionEntity.IsDeleted = true;
+
             _applicationUnitOfWork.Save();
         }
 
