@@ -3,7 +3,6 @@ using AutoMapper;
 using MansionRentBackend.Application.Repositories;
 using MansionRentBackend.Application.Services;
 using MansionRentBackend.Application.UnitOfWorks;
-using MansionRentBackend.Domain.Repositories;
 using Moq;
 using NUnit.Framework;
 using Shouldly;
@@ -249,6 +248,83 @@ public class MansionServiceTests
         _applicationtUnitOfWork.Setup(x => x.Save()).Verifiable();
 
         _mansionService.EditMansion(mansion);
+
+        this.ShouldSatisfyAllConditions(
+            () => _applicationtUnitOfWork.VerifyAll(),
+            () => _mansionRepositoryMock.VerifyAll()
+        );
+    }
+
+    [Test, Category("unit test")]
+    public void GetMansion_MansionDoesNotExist_ThrowsError()
+    {
+        var userId = Guid.NewGuid();
+
+        var mansion = new MansionBO
+        {
+            Name = "Test",
+            Details = "",
+            Rate = 2,
+            Sqft = 4,
+            Occupancy = 6,
+            Base64Image = "BASE64_STRING",
+            CreatedDate = DateTime.Now,
+            UpdatedDate = DateTime.Now,
+            IsDeleted = false,
+            UserId = userId
+        };
+
+        _applicationtUnitOfWork.Setup(x => x.Mansions).Returns(_mansionRepositoryMock.Object);
+
+        _mansionRepositoryMock.Setup(x => x.GetById(mansion.Id)).ReturnsAsync((MansionEO)null);
+
+        Should.Throw<Exception>
+        (
+            () => _mansionService.GetMansion(mansion.Id)
+        );
+    }
+
+    [Test, Category("unit test")]
+    public void GetMansion_MansionDoesNotExist_GetsMansion()
+    {
+        var userId = Guid.NewGuid();
+
+        var mansion = new MansionBO
+        {
+            Name = "Test",
+            Details = "",
+            Rate = 2,
+            Sqft = 4,
+            Occupancy = 6,
+            Base64Image = "BASE64_STRING",
+            CreatedDate = DateTime.Now,
+            UpdatedDate = DateTime.Now,
+            IsDeleted = false,
+            UserId = userId
+        };
+
+        var mansionEntity = new MansionEO
+        {
+            Name = "Test",
+            Details = "",
+            Rate = 2,
+            Sqft = 4,
+            Occupancy = 6,
+            Base64Image = "BASE64_STRING",
+            CreatedDate = DateTime.Now,
+            UpdatedDate = DateTime.Now,
+            IsDeleted = false,
+            UserId = userId
+        };
+
+        _applicationtUnitOfWork.Setup(x => x.Mansions).Returns(_mansionRepositoryMock.Object);
+
+        _mansionRepositoryMock.Setup(x => x.GetById(mansion.Id)).ReturnsAsync(mansionEntity);
+
+        _mapperMock.Setup(x => x.Map<MansionBO>(mansionEntity))
+                .Returns(mansion).Verifiable();
+
+        var result = _mansionService.GetMansion(mansion.Id).Result;
 
         this.ShouldSatisfyAllConditions(
             () => _applicationtUnitOfWork.VerifyAll(),
