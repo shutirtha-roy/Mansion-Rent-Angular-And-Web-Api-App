@@ -4,6 +4,11 @@
         <h1 class="text-primary">Create Mansion</h1>
         <hr />
 
+        <div class="row text-center m-5">
+            <div class="col-5"></div>
+            <img [src]="addMansionRequest.base64Image" *ngIf="addMansionRequest.base64Image" class="card-img-top w-25" width="10px" height="100px" alt="...">
+        </div>
+        
         <div class="row">
             <div class="col-2">
                 <label for="Name" class="control-label pt-2" style="font-size:20px;">Name</label>
@@ -27,11 +32,19 @@
             </div>
 
             <div class="col-2">
+                <label for="photoUpload" class="control-label pt-2" style="font-size:20px;">Image Upload</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input type="file" (change)="getImage($event)" class="form-control" id="photoUpload" 
+                name="photoUpload" #photoUpload="ngModel" required ngModel/>
+            </div>
+
+            <!-- <div class="col-2">
                 <label for="Base64Image" class="control-label pt-2" style="font-size:20px;">Base64Image</label>
             </div>
             <div class="col-10 pb-3">
                 <input type="text" class="form-control" id="base64Image" name="base64Image" [(ngModel)]="addMansionRequest.base64Image">
-            </div>
+            </div> -->
 
             <div class="col-2">
                 <label asp-for="Occupancy" class="control-label pt-2" style="font-size:20px;">Occupancy</label>
