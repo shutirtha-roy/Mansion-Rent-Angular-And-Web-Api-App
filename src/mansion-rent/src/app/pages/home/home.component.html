@@ -7,7 +7,7 @@
 <div class="row" *ngFor="let mansion of mansionlist" style="--bs-gutter-x:0" >
     <div class="row" style="border-radius:20px; border: 1px solid #ffffff">
         <div class="col-4">
-            <img class="d-block w-100" style="border-radius:20px;" src="https://dotnetmastery.com/bluevillaimages/villa3.jpg" alt="First slide">
+            <img class="d-block w-100" style="border-radius:20px;" [src]="mansion.base64Image" alt="First slide">
         </div>
         <div class="col-8">
             <p class="card-title text-dark" style="font-size:xx-large">{{ mansion.name }}</p>
@@ -16,7 +16,7 @@
             </p>
             <div class="col-4">
                 <span class="">Max Occupancy : {{ mansion.occupancy }} adults </span><br />
-                <span class=" pt-1">Villa Size : {{ mansion.sqft }} sqft</span><br />
+                <span class=" pt-1">Mansion Size : {{ mansion.sqft }} sqft</span><br />
             </div>
         </div>
         <div class="col-12">
