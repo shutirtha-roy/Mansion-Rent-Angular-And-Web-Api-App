@@ -8,6 +8,7 @@ import { MansionListComponent } from './mansion/mansion-list/mansion-list.compon
 import { AddMansionComponent } from './mansion/add-mansion/add-mansion.component';
 import { EditMansionComponent } from './mansion/edit-mansion/edit-mansion.component';
 import { DeleteMansionComponent } from './mansion/delete-mansion/delete-mansion.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { DeleteMansionComponent } from './mansion/delete-mansion/delete-mansion.
     MansionListComponent,
     AddMansionComponent,
     EditMansionComponent,
-    DeleteMansionComponent
+    DeleteMansionComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

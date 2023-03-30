@@ -1,0 +1,39 @@
+
+<h1 class="text-center m-5">Welcome to Mansions HomePage</h1>
+<img class="d-block w-50 mx-auto" src="../../../assets/images/MansionHomePage.PNG" alt="" />
+
+<hr />
+
+<div class="row" *ngFor="let mansion of mansionlist" style="--bs-gutter-x:0" >
+        <div class="row" style="border-radius:20px; border: 1px solid #ffffff">
+            <div class="col-4">
+                <img class="d-block w-100" style="border-radius:20px;" src="https://dotnetmastery.com/bluevillaimages/villa3.jpg" alt="First slide">
+            </div>
+            <div class="col-8">
+                <p class="card-title text-dark" style="font-size:xx-large">{{ mansion.name }}</p>
+                <p class="card-text">
+                    {{ mansion.details }}
+                </p>
+                <div class="col-4">
+                    <span class="">Max Occupancy : {{ mansion.occupancy }} adults </span><br />
+                    <span class=" pt-1">Villa Size : {{ mansion.sqft }} sqft</span><br />
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="row pb-3 pt-2">
+                    <div class="col-4">
+                        <a href="" class="btn btn-success form-control btn-block disabled" >Book</a>
+                    </div>
+                    
+                    <div class="col-8">
+                        <span class="text-dark float-end font-weight-bold pt-1" style="font-size:25px;">
+                            Price: BDT.
+                            <span>
+                                {{ mansion.rate }} Thousand
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

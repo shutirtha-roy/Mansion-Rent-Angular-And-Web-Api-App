@@ -21,6 +21,10 @@ export class MansionService {
     return this.http.get<IMansionApiResponse>(this.baseUrl);
   }
 
+  getAllMansionsForViewers(): Observable<IMansionApiResponse> {
+    return this.http.get<IMansionApiResponse>(this.baseUrl + '/all');
+  }
+
   getMansion(id: string): Observable<IMansionApiResponse> {
     return this.http.get<IMansionApiResponse>(this.baseUrl + '/' + id);
   }
