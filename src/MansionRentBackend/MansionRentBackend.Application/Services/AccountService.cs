@@ -46,7 +46,7 @@ public class AccountService : IAccountService
                         Name = applicationUser.Name,
                         UserName = applicationUser.UserName,
                         Password = applicationUser.PasswordHash,
-                        Role = "admin"
+                        Role = "User"
                     },
                     Token = jwtToken
                 };
