@@ -53,6 +53,37 @@ namespace MansionRentBackend.API.Controllers.v1
             }
         }
 
+        [AllowAnonymous]
+        [HttpGet("all")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<object>> GetAllMansions()
+        {
+            try
+            {
+                var mansionDto = _scope.Resolve<MansionListDto>();
+                var mansions = await mansionDto.GetAllMansions();
+
+                _response.StatusCode = HttpStatusCode.OK;
+                _response.IsSuccess = true;
+                _response.ErrorMessages = new List<string>();
+                _response.Result = mansions;
+
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _response.StatusCode = HttpStatusCode.BadRequest;
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string>()
+                {
+                    ex.Message
+                };
+                _response.Result = null;
+
+                return BadRequest(_response);
+            }
+        }
+
         [HttpGet("{id}")]
         public async Task<object> Get([FromRoute] Guid id)
         {
