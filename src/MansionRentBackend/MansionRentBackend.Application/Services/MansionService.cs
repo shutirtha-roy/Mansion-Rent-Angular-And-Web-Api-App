@@ -80,5 +80,15 @@ namespace MansionRentBackend.Application.Services
 
             return mansions;
         }
+
+        public async Task<IList<MansionBO>> GetMansionsByUser(Guid userId)
+        {
+            var mansionsEO = await _applicationUnitOfWork.Mansions.Get(x => x.IsDeleted == false && x.UserId == userId, "");
+            mansionsEO = mansionsEO.Take(100).ToList();
+
+            var mansions = _mapper.Map<List<MansionBO>>(mansionsEO);
+
+            return mansions;
+        }
     }
 }

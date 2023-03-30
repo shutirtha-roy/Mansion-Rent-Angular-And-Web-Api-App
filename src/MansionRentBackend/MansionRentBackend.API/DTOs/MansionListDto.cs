@@ -25,9 +25,9 @@ public class MansionListDto : BaseDto
         return mansion;
     }
 
-    internal async Task<IList<MansionBO>> GetAllMansions()
+    internal async Task<IList<MansionBO>> GetAllMansionsByUser(Guid userId)
     {
-        var mansions = await _mansionService.GetMansions();
+        var mansions = await _mansionService.GetMansionsByUser(userId);
         return mansions;
     }
 

@@ -26,12 +26,11 @@ namespace MansionRentBackend.API.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<object>> Get()
         {
-            var id = Guid.Parse(User.FindFirstValue(ClaimTypes.Sid));
-
             try
             {
+                var id = Guid.Parse(User.FindFirstValue(ClaimTypes.Sid));
                 var mansionDto = _scope.Resolve<MansionListDto>();
-                var mansions = await mansionDto.GetAllMansions();
+                var mansions = await mansionDto.GetAllMansionsByUser(id);
 
                 _response.StatusCode = HttpStatusCode.OK;
                 _response.IsSuccess = true;
