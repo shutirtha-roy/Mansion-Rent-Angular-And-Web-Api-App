@@ -10,7 +10,7 @@ import { MansionListComponent } from './mansion/mansion-list/mansion-list.compon
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth/login',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
