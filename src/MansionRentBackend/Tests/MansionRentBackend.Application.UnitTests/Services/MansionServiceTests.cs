@@ -128,4 +128,52 @@ public class MansionServiceTests
             () => _mansionService.CreateMansion(mansion)
         );
     }
+
+    [Test, Category("unit test")]
+    public void DeleteMansion_MansionExists_DeletesMansion()
+    {
+        var userId = Guid.NewGuid();
+
+        var mansionEntity = new MansionEO
+        {
+            Name = "Test",
+            Details = "",
+            Rate = 2,
+            Sqft = 4,
+            Occupancy = 6,
+            Base64Image = "BASE64_STRING",
+            CreatedDate = DateTime.Now,
+            UpdatedDate = DateTime.Now,
+            IsDeleted = false,
+            UserId = userId
+        };
+
+        _mansionRepositoryMock.Setup(x => x.GetCount(It.IsAny<Expression<Func<MansionEO, bool>>>())).ReturnsAsync(1);
+
+        _applicationtUnitOfWork.Setup(x => x.Mansions).Returns(_mansionRepositoryMock.Object);
+
+        _mansionRepositoryMock.Setup(x => x.GetById(userId)).ReturnsAsync(mansionEntity);
+
+        _applicationtUnitOfWork.Setup(x => x.Save()).Verifiable();
+
+        _mansionService.DeleteMansion(userId);
+
+        this.ShouldSatisfyAllConditions(
+            () => _applicationtUnitOfWork.VerifyAll(),
+            () => _mansionRepositoryMock.VerifyAll()
+        );
+    }
+
+    [Test, Category("unit test")]
+    public void DeleteMansion_MansionDoesNotExist_ThrowsError()
+    {
+        var userId = Guid.NewGuid();
+
+        _mansionRepositoryMock.Setup(x => x.GetCount(It.IsAny<Expression<Func<MansionEO, bool>>>())).ReturnsAsync(0);
+
+        Should.Throw<Exception>
+        (
+            () => _mansionService.DeleteMansion(userId)
+        );
+    }
 }
