@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, Subscriber } from 'rxjs';
 import { MansionService } from 'src/app/services/mansion.service';
 import { IMansionResult } from 'src/assets/data/IMansionApiResonse';
 
@@ -51,5 +52,33 @@ export class EditMansionComponent implements OnInit {
         this.router.navigate(['mansion']);
       }
     });
+  }
+
+  getImage(event: any)
+  {
+    this.convertToBase64(event.target.files[0]);
+  }
+
+  convertToBase64(file: File) {
+    const observable = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    });
+    observable.subscribe((base64Code) => {
+      this.mansion.base64Image = base64Code
+      console.log(base64Code);
+    })
+  }
+
+  readFile(file: File, subscriber: Subscriber<any>) {
+    const filereader = new FileReader();
+    filereader.readAsDataURL(file);
+    filereader.onload = () => {
+      subscriber.next(filereader.result);
+      subscriber.complete();
+    };
+    filereader.onerror = (error) => {
+      subscriber.error(error);
+      subscriber.complete();
+    };
   }
 }
