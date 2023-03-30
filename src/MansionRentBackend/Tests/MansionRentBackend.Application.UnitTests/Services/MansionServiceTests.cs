@@ -198,12 +198,61 @@ public class MansionServiceTests
 
         _applicationtUnitOfWork.Setup(x => x.Mansions).Returns(_mansionRepositoryMock.Object);
 
-        _mansionRepositoryMock.Setup(x => x.GetCount(It.IsAny<Expression<Func<MansionEO, bool>>>())).ReturnsAsync(null);
+        _mansionRepositoryMock.Setup(x => x.GetById(mansion.Id)).ReturnsAsync((MansionEO)null);
 
         Should.Throw<Exception>
         (
             () => _mansionService.EditMansion(mansion)
         );
     }
-    
+
+    [Test, Category("unit test")]
+    public void EditMansion_MansionExisst_UpdatesMansion()
+    {
+        var userId = Guid.NewGuid();
+
+        var mansion = new MansionBO
+        {
+            Name = "Test",
+            Details = "",
+            Rate = 2,
+            Sqft = 4,
+            Occupancy = 6,
+            Base64Image = "BASE64_STRING",
+            CreatedDate = DateTime.Now,
+            UpdatedDate = DateTime.Now,
+            IsDeleted = false,
+            UserId = userId
+        };
+
+        var mansionEntity = new MansionEO
+        {
+            Name = "Test",
+            Details = "",
+            Rate = 2,
+            Sqft = 4,
+            Occupancy = 6,
+            Base64Image = "BASE64_STRING",
+            CreatedDate = DateTime.Now,
+            UpdatedDate = DateTime.Now,
+            IsDeleted = false,
+            UserId = userId
+        };
+
+        _applicationtUnitOfWork.Setup(x => x.Mansions).Returns(_mansionRepositoryMock.Object);
+
+        _mansionRepositoryMock.Setup(x => x.GetById(mansion.Id)).ReturnsAsync(mansionEntity);
+
+        _mapperMock.Setup(x => x.Map<MansionEO>(mansion))
+                .Returns(mansionEntity).Verifiable();
+
+        _applicationtUnitOfWork.Setup(x => x.Save()).Verifiable();
+
+        _mansionService.EditMansion(mansion);
+
+        this.ShouldSatisfyAllConditions(
+            () => _applicationtUnitOfWork.VerifyAll(),
+            () => _mansionRepositoryMock.VerifyAll()
+        );
+    }
 }
