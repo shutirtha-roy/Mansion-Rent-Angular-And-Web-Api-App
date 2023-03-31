@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subscriber } from 'rxjs';
@@ -10,7 +11,11 @@ import { IMansionResult } from 'src/assets/data/IMansionApiResonse';
   templateUrl: './add-mansion.component.html',
   styleUrls: ['./add-mansion.component.css']
 })
-export class AddMansionComponent {  
+export class AddMansionComponent implements OnInit {  
+  mansionForm!: FormGroup;
+  submitted: boolean = false;
+  base64codeImage: string = '';
+
   addMansionRequest: IMansionResult = {
     id: '',
     name: '',
@@ -24,7 +29,44 @@ export class AddMansionComponent {
     isDeleted: false
   };
 
-  constructor(private mansionService: MansionService, private router: Router, private toastr: ToastrService) { }
+  constructor(
+    private mansionService: MansionService, 
+    private router: Router, 
+    private toastr: ToastrService,
+    private formBuilder: FormBuilder) { 
+
+  }
+
+  ngOnInit(): void {
+      this.mansionForm = this.formBuilder.group({
+        name: ['', Validators.required],
+        details: ['', Validators.required],
+        rate: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+        sqft: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+        occupancy: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+        base64Image: ['', Validators.required],
+        createdDate: [new Date()],
+        updatedDate: [new Date()],
+        isDeleted: [false]
+      });
+  }
+
+  onMansionSubmit() {
+    this.submitted = true;
+    console.log(this.mansionForm.value);
+
+    if(this.mansionForm.valid)
+    {
+      this.mansionService.addMansion(this.mansionForm.value)
+      .subscribe({
+        next: (mansion) => {
+          this.toastr.success("Mansion added successfully");
+          this.router.navigate(['/mansion']);
+        }
+      });
+    }
+
+  }
 
   addMansion() {
     console.log(this.addMansionRequest);
@@ -47,7 +89,11 @@ export class AddMansionComponent {
       this.readFile(file, subscriber);
     });
     observable.subscribe((base64Code) => {
-      this.addMansionRequest.base64Image = base64Code
+      this.base64codeImage = base64Code;
+      this.addMansionRequest.base64Image = base64Code;
+      this.mansionForm.patchValue({
+        base64Image: base64Code
+      });
       console.log(base64Code);
     })
   }

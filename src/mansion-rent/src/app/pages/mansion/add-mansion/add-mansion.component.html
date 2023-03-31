@@ -1,12 +1,12 @@
 <div class="container my-5">
-    <form #form="ngForm" (ngSubmit)="addMansion()">
+    <form [formGroup]="mansionForm" (ngSubmit)="onMansionSubmit()">
         <br />
         <h1 class="text-primary">Create Mansion</h1>
         <hr />
 
         <div class="row text-center m-5">
             <div class="col-5"></div>
-            <img [src]="addMansionRequest.base64Image" *ngIf="addMansionRequest.base64Image" class="card-img-top w-25" width="10px" height="100px" alt="...">
+            <img [src]="base64codeImage" *ngIf="base64codeImage" class="card-img-top w-25" width="10px" height="100px" alt="...">
         </div>
         
         <div class="row">
@@ -14,43 +14,85 @@
                 <label for="Name" class="control-label pt-2" style="font-size:20px;">Name</label>
             </div>
             <div class="col-10 pb-3">
-                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="addMansionRequest.name">
+                <input formControlName="name" [ngClass]="{'is-invalid': submitted && mansionForm.controls['name'].errors }" type="text" class="form-control">
+                <div *ngIf="submitted && mansionForm.controls['name'].errors" class="text-danger">
+                    <div *ngIf="submitted && mansionForm.controls['name'].errors['required']">
+                        Name is required
+                    </div>
+                </div>
             </div>
+            
 
             <div class="col-2">
-                <label for="Rate" class="control-label pt-2" style="font-size:20px;">Rate</label>
+                <label for="Rate"  class="control-label pt-2" style="font-size:20px;">Rate</label>
             </div>
             <div class="col-10 pb-3">
-                <input type="text" class="form-control" id="rate" name="rate" [(ngModel)]="addMansionRequest.rate">
+                <input formControlName="rate" [ngClass]="{'is-invalid': submitted && mansionForm.controls['rate'].errors }" type="text" class="form-control">
+                <div *ngIf="submitted && mansionForm.controls['rate'].errors" class="text-danger">
+                    <div *ngIf="submitted && mansionForm.controls['rate'].errors['required']">
+                        Rate is required
+                    </div>
+
+                    <div *ngIf="submitted && mansionForm.controls['rate'].errors['pattern']">
+                        Rate should be a number
+                    </div>
+                </div>
             </div>
 
             <div class="col-2">
                 <label for="Details" class="control-label pt-2" style="font-size:20px;">Details</label>
             </div>
             <div class="col-10 pb-3">
-                <textarea type="text" id="details" name="details" [(ngModel)]="addMansionRequest.details" class="form-control" rows="5"></textarea>
+                <textarea formControlName="details" [ngClass]="{'is-invalid': submitted && mansionForm.controls['details'].errors }" type="text" class="form-control" rows="5"></textarea>
+                <div *ngIf="submitted && mansionForm.controls['details'].errors" class="text-danger">
+                    <div *ngIf="submitted && mansionForm.controls['details'].errors['required']">
+                        Details are required
+                    </div>
+                </div>
             </div>
 
             <div class="col-2">
                 <label for="photoUpload" class="control-label pt-2" style="font-size:20px;">Image Upload</label>
             </div>
             <div class="col-10 pb-3">
-                <input type="file" (change)="getImage($event)" class="form-control" id="photoUpload" 
-                name="photoUpload" #photoUpload="ngModel" required ngModel/>
+                <input type="file" formControlName="base64Image" [ngClass]="{'is-invalid': submitted && mansionForm.controls['base64Image'].errors }" (change)="getImage($event)" class="form-control"/>
+                <div *ngIf="submitted && mansionForm.controls['base64Image'].errors" class="text-danger">
+                    <div *ngIf="submitted && mansionForm.controls['base64Image'].errors['required']">
+                        Image is required
+                    </div>
+                </div>
             </div>
 
             <div class="col-2">
                 <label asp-for="Occupancy" class="control-label pt-2" style="font-size:20px;">Occupancy</label>
             </div>
             <div class="col-10 pb-3">
-                <input type="text" class="form-control" id="occupancy" name="occupancy" [(ngModel)]="addMansionRequest.occupancy" />
+                <input formControlName="occupancy" [ngClass]="{'is-invalid': submitted && mansionForm.controls['occupancy'].errors }" type="text" class="form-control" />
+                <div *ngIf="submitted && mansionForm.controls['occupancy'].errors" class="text-danger">
+                    <div *ngIf="submitted && mansionForm.controls['occupancy'].errors['required']">
+                        Occupancy is required
+                    </div>
+
+                    <div *ngIf="submitted && mansionForm.controls['occupancy'].errors['pattern']">
+                        Occupancy should be a number
+                    </div>
+                </div>
             </div>
 
             <div class="col-2">
                 <label asp-for="Sqft" class="control-label pt-2" style="font-size:20px;">Sqft</label>
             </div>
             <div class="col-10 pb-3">
-                <input type="text" class="form-control" id="occupancy" name="sqft" [(ngModel)]="addMansionRequest.sqft" />
+                <input formControlName="sqft" [ngClass]="{'is-invalid': submitted && mansionForm.controls['sqft'].errors }" type="text" class="form-control"/>
+                <div *ngIf="submitted && mansionForm.controls['sqft'].errors" class="text-danger">
+                    <div *ngIf="submitted && mansionForm.controls['sqft'].errors['required']">
+                        Sqft is required
+                    </div>
+
+                    <div *ngIf="submitted && mansionForm.controls['sqft'].errors['pattern']">
+                        Sqft should be a number
+                    </div>
+                </div>
             </div>
 
             <div class="col-5 offset-2">
