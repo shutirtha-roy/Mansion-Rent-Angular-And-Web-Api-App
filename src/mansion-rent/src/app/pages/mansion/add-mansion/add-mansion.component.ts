@@ -16,19 +16,6 @@ export class AddMansionComponent implements OnInit {
   submitted: boolean = false;
   base64codeImage: string = '';
 
-  addMansionRequest: IMansionResult = {
-    id: '',
-    name: '',
-    details: '',
-    rate: '',
-    sqft: '',
-    occupancy: '',
-    base64Image: '',
-    createdDate: new Date(),
-    updatedDate: new Date(),
-    isDeleted: false
-  };
-
   constructor(
     private mansionService: MansionService, 
     private router: Router, 
@@ -68,17 +55,6 @@ export class AddMansionComponent implements OnInit {
 
   }
 
-  addMansion() {
-    console.log(this.addMansionRequest);
-    this.mansionService.addMansion(this.addMansionRequest)
-    .subscribe({
-      next: (mansion) => {
-        this.toastr.success("Mansion added successfully");
-        this.router.navigate(['/mansion']);
-      }
-    });
-  }
-
   getImage(event: any)
   {
     this.convertToBase64(event.target.files[0]);
@@ -90,11 +66,9 @@ export class AddMansionComponent implements OnInit {
     });
     observable.subscribe((base64Code) => {
       this.base64codeImage = base64Code;
-      this.addMansionRequest.base64Image = base64Code;
       this.mansionForm.patchValue({
         base64Image: base64Code
       });
-      console.log(base64Code);
     })
   }
 
