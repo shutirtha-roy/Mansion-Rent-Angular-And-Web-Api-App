@@ -9,6 +9,7 @@ import { AddMansionComponent } from './mansion/add-mansion/add-mansion.component
 import { EditMansionComponent } from './mansion/edit-mansion/edit-mansion.component';
 import { DeleteMansionComponent } from './mansion/delete-mansion/delete-mansion.component';
 import { HomeComponent } from './home/home.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { HomeComponent } from './home/home.component';
     CommonModule,
     PagesRoutingModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    NgxDatatableModule
   ]
 })
 export class PagesModule { }

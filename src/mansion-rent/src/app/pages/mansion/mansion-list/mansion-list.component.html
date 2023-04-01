@@ -3,34 +3,43 @@
         <h1 class="text-primary">Mansion List</h1>
     </div>
     <div class="col text-end pt-1">
-        <a class="btn btn-outline-primary" routerLink="add"><i class="bi bi-plus-square-fill"></i> Create New Mansion</a>
+        <a class="btn btn-outline-primary m-2" routerLink="add"><i class="bi bi-plus-square-fill"></i> Create New Mansion</a>
     </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Occupancy
-                </th>
-                <th>
-                    Price
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody *ngFor="let mansion of mansionlist">
-            <tr>
-                <td>{{ mansion.name }}</td>
-                <td>{{ mansion.occupancy }}</td>
-                <td>{{ mansion.rate }}</td>
-                <td>
-                    <a class="btn btn-success " [routerLink]="['/mansion','edit', mansion.id]"><i class="bi bi-pencil-square">Edit</i></a>
-                    <a class="btn btn-danger ms-2" [routerLink]="['/mansion','delete', mansion.id]"><i class="bi bi-trash3-fill">Delete</i></a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <ngx-datatable 
+        class="material container striped" 
+        [rows]="mansionlist" 
+        [columnMode]="'flex'" 
+        [headerHeight]="50" 
+        [footerHeight]="50" 
+        rowHeight="auto"
+        [limit]="10"
+    >
+        <ngx-datatable-column name="#" [flexGrow]="0.5">
+            <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+                {{(rowIndex + 1)}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Name" [flexGrow]="2">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row?.name }}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Occupancy" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row?.occupancy }}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Price(BDT)" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row?.rate }}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Edit/Delete Mansion" [flexGrow]="2">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <a class="btn btn-success " [routerLink]="['/mansion','edit', row.id]"><i class="bi bi-pencil-square">Edit</i></a>
+                <a class="btn btn-danger ms-2" [routerLink]="['/mansion','delete', row.id]"><i class="bi bi-trash3-fill">Delete</i></a>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
 </div>

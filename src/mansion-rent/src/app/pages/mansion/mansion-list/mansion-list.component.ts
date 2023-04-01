@@ -30,3 +30,5 @@ export class MansionListComponent implements OnInit{
     });
   } 
 }
+
+
