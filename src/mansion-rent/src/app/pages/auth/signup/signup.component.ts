@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import ValidateForm from 'src/app/helpers/validateform';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -15,6 +14,7 @@ export class SignupComponent implements OnInit {
   isText: boolean = false;
   eyeIcon: string = "fa-eye-slash";
   signUpForm!: FormGroup;
+  submitted: boolean = false;
 
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private toaster: ToastrService) { }
 
@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
       name: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required],
-      role: ['admin'],
+      role: ['user'],
     });
   }
 
@@ -34,6 +34,8 @@ export class SignupComponent implements OnInit {
   }
 
   onSignUp() {
+    this.submitted = true;
+
     if(this.signUpForm.valid) {
       //Send the obj to database
       console.log(this.signUpForm.value);
@@ -52,10 +54,5 @@ export class SignupComponent implements OnInit {
       });
 
     }
-
-    //console.log(this.loginForm.value);
-    //if not valid throw the error using toaster and required fields
-    ValidateForm.validateAllFormFields(this.signUpForm);
-    //alert("Your form is invalid");
   }
 }

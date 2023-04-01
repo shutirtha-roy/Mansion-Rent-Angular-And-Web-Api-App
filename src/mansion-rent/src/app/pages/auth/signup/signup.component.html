@@ -7,15 +7,16 @@
                         <h3 class="pt-3 font-weight-bold text-center">Sign Up</h3>
                     </div>
                     <div class="panel-body p-3">
-                        <form [formGroup]="signUpForm">
+                        <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
                             <div class="form-group pt-3">
                                 <div class="input-field text-center" [class.error]="signUpForm.controls['name'].dirty && signUpForm.hasError('required', 'name')">
                                     <span class="fa fa-user p-2"></span>
                                     <input formControlName="name" type="text" placeholder="Name" class="w-75">
                                     <span class="fa fa-address-book"></span>
                                     <br>
-                                    <small *ngIf="signUpForm.controls['name'].dirty && signUpForm.hasError('required', 'name')"
-                            class="text-danger">*Name is required</small>
+                                    <div *ngIf="submitted && signUpForm.controls['name'].errors">
+                                        <small *ngIf="submitted && signUpForm.controls['name'].errors['required']" class="text-danger">*Name is required</small>
+                                    </div>
                                 </div>
                             </div>
 
@@ -25,8 +26,9 @@
                                     <input formControlName="username" type="text" placeholder="Username" class="w-75">
                                     <span class="fa fa-address-book"></span>
                                     <br>
-                                    <small *ngIf="signUpForm.controls['username'].dirty && signUpForm.hasError('required', 'username')"
-                            class="text-danger">*Username is required</small>
+                                    <div *ngIf="submitted && signUpForm.controls['username'].errors">
+                                        <small *ngIf="submitted && signUpForm.controls['username'].errors['required']" class="text-danger">*Username is required</small>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -36,13 +38,14 @@
                                     <input formControlName="password" [type]="type" placeholder="Password" class="w-75">
                                     <span (click)="hideShowPass()" class="fa {{ eyeIcon }}"></span>
                                     <br>
-                                    <small *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required', 'password')"
-                            class="text-danger">*Password is required</small>
+                                    <div *ngIf="submitted && signUpForm.controls['password'].errors">
+                                        <small *ngIf="submitted && signUpForm.controls['password'].errors['required']" class="text-danger">*Password is required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="text-center">
-                                <button (click)="onSignUp()" type="submit" class="btn btn-primary btn-block mt-4 w-75">Sign up</button>
+                                <input type="submit" class="btn btn-primary btn-block mt-4 w-75" value="Sign Up" />
                             </div>
                             <div class="text-center pt-4 text-muted">Already have an account? <a id="forget" routerLink="/login">Login</a></div>
                         </form>
