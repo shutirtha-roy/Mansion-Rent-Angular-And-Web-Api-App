@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, Subscriber } from 'rxjs';
 import { MansionService } from 'src/app/services/mansion.service';
 import { IMansionResult } from 'src/assets/data/IMansionApiResonse';
@@ -33,7 +34,8 @@ export class EditMansionComponent implements OnInit {
     private route: ActivatedRoute, 
     private mansionService: MansionService, 
     private router: Router,
-    private formBuilder: FormBuilder) { 
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService) { 
 
     }
 
@@ -98,6 +100,7 @@ export class EditMansionComponent implements OnInit {
       this.mansionService.updateMansion(this.mansionForm.value)
       .subscribe({
         next: (response) => {
+          this.toastr.success("Mansion updated successfully");
           this.router.navigate(['mansion']);
         }
       });     

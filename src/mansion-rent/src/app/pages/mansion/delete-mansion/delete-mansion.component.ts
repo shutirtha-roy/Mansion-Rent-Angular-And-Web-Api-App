@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { MansionService } from 'src/app/services/mansion.service';
 import { IMansionResult } from 'src/assets/data/IMansionApiResonse';
 
@@ -22,7 +23,13 @@ export class DeleteMansionComponent implements OnInit {
     isDeleted: false
   };  
   
-  constructor(private route: ActivatedRoute, private mansionService: MansionService, private router: Router) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private mansionService: MansionService, 
+    private router: Router,
+    private toastr: ToastrService) { 
+    
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe({
@@ -33,9 +40,7 @@ export class DeleteMansionComponent implements OnInit {
           this.mansionService.getMansion(id)
           .subscribe({
             next: (response) => {
-              
               this.mansion = Object.assign(response.result);
-              console.log(this.mansion);
             }
           });
         }
@@ -47,6 +52,7 @@ export class DeleteMansionComponent implements OnInit {
     this.mansionService.deleteMansion(id)
     .subscribe({
       next: (response) => {
+        this.toastr.success('Mansion delete successfully.')
         this.router.navigate(['mansion']);
       }
     });
