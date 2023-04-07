@@ -46,14 +46,17 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.loginForm.value)
       .subscribe({
         next: (res) => {
-          this.toaster.success("Login Successful");
           this.auth.storeToken(res.result.token);
           this.auth.storeName(res.result.user.name);
           this.loginForm.reset();
+          console.log(res.result);
           this.router.navigate(['mansion']);
         },
         error: (err) => {
           alert(err?.err.message)
+        },
+        complete: () => {
+          this.toaster.success("Login Successful");
         }
       })
     }
