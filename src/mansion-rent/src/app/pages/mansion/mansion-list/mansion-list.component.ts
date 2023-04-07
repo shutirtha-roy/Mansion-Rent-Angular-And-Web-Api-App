@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { MansionService } from 'src/app/services/mansion.service';
+import { UserStoreService } from 'src/app/services/user-store.service';
 import { IMansionApiResponse, IMansionResult } from 'src/assets/data/IMansionApiResonse';
 
 @Component({
@@ -9,18 +11,24 @@ import { IMansionApiResponse, IMansionResult } from 'src/assets/data/IMansionApi
 })
 export class MansionListComponent implements OnInit{
   mansionlist!: IMansionResult[];
+  fullName: string = "";
+  role: string = "";
 
   dropMansionList(mansion: IMansionResult) {
     this.mansionlist.filter(obj => obj.id !== mansion.id);
   }
 
-  constructor(private mansionService: MansionService) { }
+  constructor(
+    private mansionService: MansionService,
+    private auth: AuthService,
+    private userStore: UserStoreService) { 
+
+  }
 
   ngOnInit(): void {
     this.mansionService.getAllMansions()
     .subscribe({
       next: (mansions) => {
-        //console.log(employees);
         this.mansionlist = mansions.result;
         console.log(this.mansionlist);
       },
@@ -28,6 +36,13 @@ export class MansionListComponent implements OnInit{
         console.log(response)
       }
     });
+
+    this.userStore.getFullNameFromStore()
+      .subscribe(val => {
+        const roleFromToken = this.auth.getRoleFromToken();
+        this.role = val || roleFromToken;
+        console.log(this.role);
+      });
   } 
 }
 

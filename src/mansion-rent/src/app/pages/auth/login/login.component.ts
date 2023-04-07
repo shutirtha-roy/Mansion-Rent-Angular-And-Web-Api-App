@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder, 
     private auth: AuthService, 
     private router: Router, 
+    private userStore: UserStoreService,
     private toaster: ToastrService) { 
 
   }
@@ -47,6 +49,9 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.auth.storeToken(res.result.token);
+          const tokenPayload = this.auth.decodeToken();
+          this.userStore.setFullNameForStore(tokenPayload.unique_name);
+          this.userStore.setRoleForStore(tokenPayload.role);
           this.auth.storeName(res.result.user.name);
           this.loginForm.reset();
           console.log(res.result);

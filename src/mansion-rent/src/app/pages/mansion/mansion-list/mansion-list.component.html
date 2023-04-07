@@ -1,4 +1,9 @@
 <div class="container p-4 border">
+    <ng-container *ngIf="role == 'Admin'">
+        <div class="row pb-2">
+            <h1 class="text-primary text-center">Admin</h1>
+        </div>
+    </ng-container>
     <div class="row pb-2">
         <h1 class="text-primary">Mansion List</h1>
     </div>
