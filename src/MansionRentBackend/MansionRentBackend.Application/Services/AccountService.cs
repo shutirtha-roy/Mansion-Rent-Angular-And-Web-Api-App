@@ -38,7 +38,10 @@ public class AccountService : IAccountService
                 var roles = (await _userManager.GetRolesAsync(applicationUser)).ToList();
                 
                 claims.Add(new Claim(ClaimTypes.Sid, applicationUser.Id.ToString()));
-                claims.Add(new Claim(ClaimTypes.Role, roles[0].ToString()));
+
+                if(roles.Count > 0)
+                    claims.Add(new Claim(ClaimTypes.Role, roles[0].ToString()));
+
                 var jwtToken = await _tokenService.GetJwtToken(claims);
 
                 var userBO = new LoginRequestBO
