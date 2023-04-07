@@ -72,7 +72,7 @@ namespace MansionRentBackend.API.Controllers
             loginReponse.ResolveDependency(_scope);
             loginReponse = await loginReponse.GetUserResult(loginDto.UserName, loginDto.Password);
 
-            if (loginReponse.User == null || string.IsNullOrEmpty(loginReponse.Token))
+            if (loginReponse == null || loginReponse.User == null || string.IsNullOrEmpty(loginReponse.Token))
             {
                 _response.StatusCode = HttpStatusCode.BadRequest;
                 _response.IsSuccess = false;
