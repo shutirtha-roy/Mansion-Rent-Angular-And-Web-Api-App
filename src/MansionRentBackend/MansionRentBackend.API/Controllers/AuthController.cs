@@ -72,19 +72,29 @@ namespace MansionRentBackend.API.Controllers
             loginReponse.ResolveDependency(_scope);
             loginReponse = await loginReponse.GetUserResult(loginDto.UserName, loginDto.Password);
 
-            if (loginReponse == null || loginReponse.User == null || string.IsNullOrEmpty(loginReponse.Token))
+            try
+            {
+                if (loginReponse == null || loginReponse.User == null || string.IsNullOrEmpty(loginReponse.Token))
+                {
+                    _response.StatusCode = HttpStatusCode.BadRequest;
+                    _response.IsSuccess = false;
+                    _response.Result = null;
+                    _response.ErrorMessages.Add("User or password is incorrect.");
+                    return BadRequest(_response);
+                }
+
+                _response.StatusCode = HttpStatusCode.OK;
+                _response.IsSuccess = true;
+                _response.Result = loginReponse;
+                return Ok(_response);
+            }
+            catch (Exception ex)
             {
                 _response.StatusCode = HttpStatusCode.BadRequest;
-                _response.IsSuccess = false;
-                _response.Result = null;
-                _response.ErrorMessages.Add("User or password is incorrect.");
-                return BadRequest(_response);
+                _response.IsSuccess = true;
+                _response.Result = ex.Message;
+                return Ok(_response);
             }
-
-            _response.StatusCode = HttpStatusCode.OK;
-            _response.IsSuccess = true;
-            _response.Result = loginReponse;
-            return Ok(_response);
         }
     }
 }
